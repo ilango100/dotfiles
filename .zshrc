@@ -104,8 +104,8 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-if [ -f $HOME/scripts/bash_insulter.sh ]; then
-	. $HOME/scripts/bash_insulter.sh
+if [ -f $HOME/scripts/insulter.sh ]; then
+	. $HOME/scripts/insulter.sh
 fi
 
 alias dotf='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
