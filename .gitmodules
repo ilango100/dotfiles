@@ -1,0 +1,18 @@
+[submodule ".oh-my-zsh"]
+	path = .oh-my-zsh
+	url = https://github.com/ohmyzsh/ohmyzsh
+[submodule ".vim/pack/packages/start/vim-commentary"]
+	path = .vim/pack/packages/start/vim-commentary
+	url = https://github.com/tpope/vim-commentary.git
+[submodule ".vim/pack/packages/start/vim-surround"]
+	path = .vim/pack/packages/start/vim-surround
+	url = https://github.com/tpope/vim-surround
+[submodule ".vim/pack/packages/start/VimCompletesMe"]
+	path = .vim/pack/packages/start/VimCompletesMe
+	url = https://github.com/ajh17/VimCompletesMe
+[submodule ".vim/pack/packages/start/vim-fugitive"]
+	path = .vim/pack/packages/start/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive
+[submodule ".vim/pack/packages/start/vim-lsc"]
+	path = .vim/pack/packages/start/vim-lsc
+	url = https://github.com/natebosch/vim-lsc
