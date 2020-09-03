@@ -1,0 +1,13 @@
+#!/bin/sh
+
+choice=$(dmenu < $HOME/.workspaces)
+
+if [ "x$choice" = "x" ]; then
+	exit
+fi
+
+if [ ! -d "$HOME/$choice" ]; then
+	exit
+fi
+
+exec kitty -d $HOME/$choice

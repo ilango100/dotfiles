@@ -74,6 +74,7 @@ plugins=(
 	python
 	pip
 	docker
+	gcloud
 )
 
 source $ZSH/oh-my-zsh.sh
