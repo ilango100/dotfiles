@@ -70,11 +70,11 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
 	git
+	gpg-agent
 	sudo
 	python
 	pip
 	docker
-	gcloud
 )
 
 source $ZSH/oh-my-zsh.sh
