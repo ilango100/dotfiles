@@ -69,13 +69,13 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-	git
 	gpg-agent
 	sudo
 	python
 	pip
-	docker
 )
+# Note to self: Before adding a plugin, if you just want completion,
+# check in the package whether zsh completion is provided there already.
 
 source $ZSH/oh-my-zsh.sh
 
@@ -105,8 +105,15 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Most important of all!
 if [ -f $HOME/scripts/insulter.sh ]; then
 	. $HOME/scripts/insulter.sh
 fi
 
+# Add local bin to path
+if [ -d $HOME/.local/bin ]; then
+	export PATH="$HOME/.local/bin:$PATH"
+fi
+
+# Alias for dot files management
 alias dotf='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
