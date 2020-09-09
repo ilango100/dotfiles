@@ -1,0 +1,8 @@
+#!/bin/sh
+choice=$(dmenu_path | dmenu)
+
+if [ "x$choice" = "x" ]; then
+	exit
+fi
+
+exec prime-run $choice
