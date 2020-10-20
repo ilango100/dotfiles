@@ -1,0 +1,8 @@
+[user]
+	name = Ilango Rajagopal
+[pull]
+	rebase = true
+[gpg]
+	program = gpg2
+[core]
+	attributesfile = /home/ilango/.gitattributes
