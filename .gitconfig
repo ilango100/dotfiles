@@ -6,3 +6,5 @@
 	program = gpg2
 [core]
 	attributesfile = /home/ilango/.gitattributes
+[init]
+	defaultBranch = main
