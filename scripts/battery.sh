@@ -1,5 +1,10 @@
 #!/bin/sh
 
+# Exit if already running
+if pgrep battery.sh > /dev/null; then
+	exit
+fi
+
 low=20
 critical=10
 hibernate=5
@@ -45,7 +50,6 @@ do
 		low_not_sent=
 	fi
 
-	#echo $percent
+	# echo $percent
 	sleep 60
 done
-
