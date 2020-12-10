@@ -199,8 +199,8 @@ bindsym $mod+c exec chromium
 bindsym $mod+b exec firefox
 bindsym $mod+v exec pavucontrol
 bindsym $mod+Shift+s exec maim -s | xclip -selection clipboard -t image/png
-bindsym $mod+Print exec maim $(date +$HOME/Pictures/Screenshot_%Y-%m-%d_%H%M%S.png)
-bindsym $mod+Shift+Print exec maim -s $(date +$HOME/Pictures/Screenshot_%Y-%m-%d_%H%M%S.png)
+bindsym $mod+Print exec maim $(date +$(xdg-user-dir PICTURES)/Screenshot_%Y-%m-%d_%H%M%S.png)
+bindsym $mod+Shift+Print exec maim -s $(date +$(xdg-user-dir PICTURES)/Screenshot_%Y-%m-%d_%H%M%S.png)
 
 # Set floating windows
 for_window [window_role="About"] floating enable

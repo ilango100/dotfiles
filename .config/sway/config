@@ -39,6 +39,10 @@ input type:touchpad {
     scroll_factor 0.7
 }
 
+input type:mouse {
+    natural_scroll enabled
+}
+
 input * xkb_numlock enabled
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
@@ -219,16 +223,17 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 # Launch applications
-bindsym $mod+c exec chromium
 bindsym $mod+b exec firefox
+# For chromium in wayland, these flags are needed
+bindsym $mod+c exec chromium --enable-features=UseOzonePlatform --ozone-platform=wayland
 bindsym $mod+v exec pavucontrol
 
 # Utils
 bindsym $mod+o exec loginctl lock-session
-bindsym $mod+shift+d exec bemenu < $HOME/.workspaces | xargs swaymsg exec -- kitty -d
-bindsym $mod+print exec grim $(date +$(xdg-user-dir PICTURES)/Screenshot_%Y-%m-%d_%H%M%S.png)
-bindsym $mod+shift+print exec grim -g "$(slurp)" $(date +$(xdg-user-dir PICTURES)/Screenshot_%Y-%m-%d_%H%M%S.png)
-bindsym $mod+shift+s exec grim -g "$(slurp)" - | wl-copy
+bindsym $mod+Shift+Return exec bemenu < $HOME/.workspaces | xargs swaymsg exec -- kitty -d
+bindsym $mod+Print exec grim $(date +$(xdg-user-dir PICTURES)/Screenshot_%Y-%m-%d_%H%M%S.png)
+bindsym $mod+Shift+Print exec grim -g "$(slurp)" $(date +$(xdg-user-dir PICTURES)/Screenshot_%Y-%m-%d_%H%M%S.png)
+bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy
 
 
 #
