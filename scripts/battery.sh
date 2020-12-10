@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Exit if already running
-if pgrep battery.sh > /dev/null; then
+if [ $(pgrep -cf $(basename $0)) -ge 2 ]; then
 	exit
 fi
 
