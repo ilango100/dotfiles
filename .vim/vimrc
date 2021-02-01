@@ -26,5 +26,7 @@ let g:lsc_server_commands = {
 \  },
 \  "c": "clangd --compile-commands-dir=build --clang-tidy --log=error",
 \  "python": "pyls",
-\  "sh": "bash-language-server start"
+\  "sh": "bash-language-server start",
+\  "rust": "rust-analyzer",
+\  "html": "vscode-html-languageserver --stdio"
 \}
