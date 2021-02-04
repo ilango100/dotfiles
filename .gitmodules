@@ -7,12 +7,15 @@
 [submodule ".vim/pack/packages/start/vim-surround"]
 	path = .vim/pack/packages/start/vim-surround
 	url = https://github.com/tpope/vim-surround
-[submodule ".vim/pack/packages/start/VimCompletesMe"]
-	path = .vim/pack/packages/start/VimCompletesMe
-	url = https://github.com/ajh17/VimCompletesMe
 [submodule ".vim/pack/packages/start/vim-fugitive"]
 	path = .vim/pack/packages/start/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive
 [submodule ".vim/pack/packages/start/vim-lsc"]
 	path = .vim/pack/packages/start/vim-lsc
 	url = https://github.com/natebosch/vim-lsc
+[submodule ".vim/pack/packages/start/gruvbox"]
+	path = .vim/pack/packages/start/gruvbox
+	url = https://github.com/morhetz/gruvbox.git
+[submodule ".vim/pack/packages/start/lightline"]
+	path = .vim/pack/packages/start/lightline
+	url = https://github.com/itchyny/lightline.vim

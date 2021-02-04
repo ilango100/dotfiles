@@ -1,26 +1,45 @@
+" Load useful defaults
 source $VIMRUNTIME/defaults.vim
 
+" Windows
 set splitright
 set splitbelow
 set hidden
 
+" Search
 set ignorecase
 set smartcase
 
+" Clipboard
 set clipboard=unnamedplus
-set mouse=""
 
+" Swap files
 set dir=/tmp
 
+" netrw config
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 
+" Color scheme
+set termguicolors
+set background=dark
+colorscheme gruvbox
+" This won't work properly with lsc
+" autocmd vimenter * ++nested colorscheme gruvbox
+
+" lightline config
+set laststatus=2
+set noshowmode
+let g:lightline = {'colorscheme': 'gruvbox'}
+
+" SendToTerm config
 let g:langTerms = {'python': 'ipython'}
 
+" vim-lsc config
 let g:lsc_auto_map = v:true
 let g:lsc_server_commands = {
 \  "go": {
-\    "command": "/home/ilango/go/bin/gopls serve",
+\    "command": $HOME."/go/bin/gopls serve",
 \    "log_level": -1,
 \    "suppress_stderr": v:true,
 \  },
