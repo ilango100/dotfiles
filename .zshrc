@@ -115,5 +115,6 @@ if [ -d $HOME/.local/bin ]; then
 	export PATH="$HOME/.local/bin:$PATH"
 fi
 
-# Alias for dot files management
+# Dot files management
+# Clone with: git clone --separate-git-dir=~/.dotfiles --recurse-submodules https://github.com/ilango100/dotfiles [~]
 alias dotf='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
