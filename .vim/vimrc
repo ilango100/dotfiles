@@ -48,5 +48,24 @@ let g:lsc_server_commands = {
 \  "python": "pyls",
 \  "sh": "bash-language-server start",
 \  "rust": "rust-analyzer",
-\  "html": "vscode-html-languageserver --stdio"
-\}
+\  "html": "vscode-html-languageserver --stdio",
+\  "javascript": "typescript-language-server --stdio",
+\  "typescript": "typescript-language-server --stdio",
+\  "vim" : {
+\     "name": "vim-language-server",
+\     "command": $HOME."/.npm/bin/vim-language-server --stdio",
+\        "message_hooks": {
+\            "initialize": {
+\                "initializationOptions": { "vimruntime": $VIMRUNTIME, "runtimepath": &rtp },
+\            },
+\        },
+\     },
+\  }
+
+" Formatting
+augroup formatters
+	au!
+	au FileType python setlocal formatprg=yapf
+	au FileType go setlocal formatprg=gofmt
+augroup END
+nnoremap <Leader>f mfgggqG`f

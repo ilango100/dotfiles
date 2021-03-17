@@ -116,5 +116,7 @@ if [ -d $HOME/.local/bin ]; then
 fi
 
 # Dot files management
-# Clone with: git clone --separate-git-dir=~/.dotfiles --recurse-submodules https://github.com/ilango100/dotfiles [~]
-alias dotf='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+# Setup:
+# git clone --separate-git-dir=$HOME/.dotfiles --recurse-submodules https://github.com/ilango100/dotfiles [~]
+# git --git-dir=~/.dotfiles config core.worktree $HOME
+alias dotf='git --git-dir=$HOME/.dotfiles'
