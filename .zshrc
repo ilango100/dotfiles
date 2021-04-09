@@ -73,6 +73,7 @@ plugins=(
 	sudo
 	python
 	pip
+	fzf
 )
 # Note to self: Before adding a plugin, if you just want completion,
 # check in the package whether zsh completion is provided there already.
@@ -111,7 +112,7 @@ if [ -f $HOME/scripts/insulter.sh ]; then
 fi
 
 # Add local bin to path
-if [ -d $HOME/.local/bin ]; then
+if [ -d $HOME/.local/bin ] && [[ ":$PATH:" != *:$HOME/.local/bin:* ]]; then
 	export PATH="$HOME/.local/bin:$PATH"
 fi
 

@@ -19,3 +19,6 @@
 [submodule ".vim/pack/packages/start/lightline"]
 	path = .vim/pack/packages/start/lightline
 	url = https://github.com/itchyny/lightline.vim
+[submodule ".vim/pack/packages/start/fern"]
+	path = .vim/pack/packages/start/fern
+	url = https://github.com/lambdalisue/fern.vim
