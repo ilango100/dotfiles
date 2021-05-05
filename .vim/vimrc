@@ -9,6 +9,7 @@ set hidden
 " Search
 set ignorecase
 set smartcase
+set grepprg=rg\ --vimgrep
 
 " Clipboard
 set clipboard=unnamedplus
@@ -28,7 +29,7 @@ let g:netrw_loaded_netrwPlugin = 1
 set termguicolors
 set background=dark
 colorscheme gruvbox
-" This won't work properly with lsc
+" Following won't work properly with lsc
 " autocmd vimenter * ++nested colorscheme gruvbox
 
 " lightline config
