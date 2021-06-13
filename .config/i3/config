@@ -182,7 +182,7 @@ bindsym XF86MonBrightnessUp exec --no-startup-id lux -a 5%
 bindsym XF86MonBrightnessDown exec --no-startup-id lux -s 5%
 
 # Start the notification daemon
-exec --no-startup-id /usr/lib/notification-daemon-1.0/notification-daemon
+exec --no-startup-id dunst
 
 # Start battery notification
 exec --no-startup-id $HOME/scripts/battery.sh
@@ -201,6 +201,11 @@ bindsym $mod+v exec pavucontrol
 bindsym $mod+Shift+s exec maim -s | xclip -selection clipboard -t image/png
 bindsym $mod+Print exec maim $(date +$(xdg-user-dir PICTURES)/Screenshot_%Y-%m-%d_%H%M%S.png)
 bindsym $mod+Shift+Print exec maim -s $(date +$(xdg-user-dir PICTURES)/Screenshot_%Y-%m-%d_%H%M%S.png)
+
+# Notification shortcuts
+bindsym $mod+x exec dunstctl close
+bindsym $mod+Shift+x exec dunstctl close-all
+bindsym $mod+n exec dunstctl context
 
 # Set floating windows
 for_window [window_role="About"] floating enable
