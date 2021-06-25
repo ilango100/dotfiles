@@ -50,6 +50,6 @@ do
 		low_not_sent=
 	fi
 
-	# echo $percent
+	echo $percent
 	sleep 60
 done

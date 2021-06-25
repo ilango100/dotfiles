@@ -249,7 +249,7 @@ exec mako
 # Connman control
 exec cmst -m
 # Bluetooth
-exec blueman-applet
+# exec blueman-applet
 # Battery notifications
 exec $HOME/scripts/battery.sh
 
