@@ -224,7 +224,7 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 # Launch applications
-bindsym $mod+b exec firefox
+bindsym $mod+b exec MOZ_ENABLE_WAYLAND=1 firefox
 # For chromium in wayland, these flags are needed
 bindsym $mod+c exec chromium --enable-features=UseOzonePlatform --ozone-platform=wayland
 bindsym $mod+v exec pavucontrol
@@ -252,6 +252,12 @@ exec cmst -m
 # exec blueman-applet
 # Battery notifications
 exec $HOME/scripts/battery.sh
+
+#
+# Set systemd user environment variables
+#
+# For pinentry-qt
+exec_always systemctl --user set-environment QT_QPA_PLATFORM=wayland
 
 
 # Always floating windows
