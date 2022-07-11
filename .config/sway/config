@@ -1,0 +1,194 @@
+# Logo key. Use Mod1 for Alt.
+set $mod Mod4
+
+# Home row direction keys, like vim
+set $left h
+set $down j
+set $up k
+set $right l
+
+# Font
+font pango:DejaVu Sans Mono 9
+
+# Use $mod+Mouse to drag or resize floating windows
+floating_modifier $mod
+
+# Launcher - fuzzel
+bindsym $mod+d exec fuzzel -T kitty
+bindsym $mod+Shift+d exec dmenu_path | fuzzel -dR | sh
+bindsym $mod+g exec dmenu_path | fuzzel -dR | xargs prime-run
+
+# Terminal - kitty
+bindsym $mod+Return exec kitty
+bindsym $mod+Shift+Return exec fuzzel -dR < $HOME/.workspaces | xargs kitty -d
+
+# Kill focused window
+bindsym $mod+Shift+q kill
+
+# Change focus
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move focused window
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Container layout, no need of stacked
+bindsym $mod+t layout tabbed
+bindsym $mod+s layout toggle split
+workspace_layout tabbed
+
+# Layout shortcuts
+bindsym $mod+Shift+f fullscreen toggle
+bindsym $mod+space focus mode_toggle
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+a focus parent
+bindsym $mod+z focus child
+
+# Scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+# Workspaces
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+# Resizing
+mode "resize" {
+	bindsym $left resize shrink width 10px
+	bindsym $down resize grow height 10px
+	bindsym $up resize shrink height 10px
+	bindsym $right resize grow width 10px
+
+	bindsym Left resize shrink width 10px
+	bindsym Down resize grow height 10px
+	bindsym Up resize shrink height 10px
+	bindsym Right resize grow width 10px
+
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+	bindsym $mod+r mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# Bar
+bar {
+	status_command i3status-rs
+	font pango:DejaVu Sans Mono, Font Awesome 6 Free 10
+}
+
+# Exit, Reload or Restart
+bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+
+# Notifications
+exec --no-startup-id dunst
+bindsym $mod+x exec --no-startup-id dunstctl close
+bindsym $mod+Shift+x exec --no-startup-id dunstctl close-all
+bindsym $mod+n exec --no-startup-id dunstctl context
+
+# Lock - swaylock
+bindsym $mod+o exec --no-startup-id loginctl lock-session
+exec swayidle -w \
+	timeout 300 'loginctl lock-session' \
+	timeout 600 'swaymsg output * dpms off' \
+		resume 'swaymsg output * dpms on' \
+	before-sleep 'playerctl pause' \
+	lock 'swaylock -fFei /usr/share/backgrounds/archlinux/lone.jpg'
+
+# Input configuration
+input type:touchpad {
+	tap enabled
+	tap_button_map lrm
+	drag enabled
+	natural_scroll enabled
+	scroll_factor 0.7
+}
+
+input type:keyboard {
+	xkb_numlock enabled
+}
+
+# Output configuration
+output eDP-1 scale 1.25
+output * bg /usr/share/backgrounds/archlinux/wave.png fill
+
+# Sway
+include /etc/sway/config.d/*
+xwayland disable
+for_window [shell="xwayland"] title_format "%title [XWayland]"
+
+# Brightness control
+bindsym XF86MonBrightnessUp exec --no-startup-id lux -a 5%
+bindsym XF86MonBrightnessDown exec --no-startup-id lux -s 5%
+
+# Dark mode
+bindsym $mod+y exec --no-startup-id gsettings set org.gnome.desktop.interface gtk-theme Adwaita
+bindsym $mod+Shift+y exec --no-startup-id gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
+
+# Volume control
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+# Track control
+bindsym --locked XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym --locked XF86AudioPause exec --no-startup-id playerctl play-pause
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+
+# Application shortcuts
+bindsym $mod+f exec MOZ_ENABLE_WAYLAND=1 firefox
+bindsym $mod+c exec google-chrome-stable
+bindsym $mod+v exec pavucontrol
+bindsym $mod+m exec speedcrunch
+
+# Screenshot shortcuts
+bindsym $mod+Print exec grim $(date +$(xdg-user-dir PICTURES)/Screenshot_%Y-%m-%d_%H%M%S.png)
+bindsym $mod+Shift+Print exec grim -g "$(slurp)" $(date +$(xdg-user-dir PICTURES)/Screenshot_%Y-%m-%d_%H%M%S.png)
+bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy -t image/png
+
+# Always floating
+for_window [window_role="About"] floating enable
+for_window [title="SpeedCrunch"] floating enable
+for_window [app_id="pinentry-qt"] floating enable
+
+# Startup applications
+exec cmst -m
+exec blueman-applet
+exec --no-startup-id $HOME/bin/battery.sh

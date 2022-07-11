@@ -1,0 +1,12 @@
+{
+  "try:except:": {
+    "prefix": "trys",
+    "body": [
+      "try:",
+      "\t${1:${TM_SELECTED_TEXT:pass}}",
+      "except ${2:Exception} as ${3:e}:",
+      "\t${4:raise $3}$0"
+    ],
+    "description": "Code Snippet for a try and except blocks."
+  }
+}

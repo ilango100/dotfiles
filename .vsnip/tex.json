@@ -1,0 +1,36 @@
+{
+	"article": {
+		"prefix": [
+			"article"
+		],
+		"body": [
+			"\\documentclass{article}",
+			"\\title{${1:$TM_FILENAME_BASE}}",
+			"\\author{${2:Ilango Rajagopal}}",
+			"\\date{${3:$CURRENT_MONTH_NAME_SHORT $CURRENT_DATE, $CURRENT_YEAR}}",
+			"",
+			"\\usepackage{setspace}",
+			"\\usepackage{amsmath}",
+			"\\usepackage{array}",
+			"\\usepackage{graphicx}",
+			"",
+			"\\newcommand\\numberthis{\\addtocounter{equation}{1}\\tag{\\theequation}}",
+			"",
+			"\\onehalfspacing",
+			"\\allowdisplaybreaks",
+			"",
+			"\\begin{document}",
+			"\\maketitle",
+			"",
+			"$0",
+			"",
+			"\\end{document}"
+		],
+		"description": "Document class Article"
+	},
+	"fraction_filled": {
+		"prefix": "@//",
+		"body": "\\frac{${1:${TM_SELECTED_TEXT}}}{$2}$0",
+		"description": "fraction"
+	}
+}

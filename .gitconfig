@@ -1,0 +1,10 @@
+[user]
+	name = Ilango Rajagopal
+[init]
+	defaultBranch = main
+[pull]
+	rebase = true
+[push]
+	autoSetupRemote = true
+[gpg]
+	program = gpg2
