@@ -176,6 +176,8 @@ Plug "hashivim/vim-terraform"
 Plug "chrisbra/csv.vim"
 g:csv_bind_B = 1
 
+Plug "goerz/jupytext.vim"
+
 # }}}
 # Vsnip {{{
 
