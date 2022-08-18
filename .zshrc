@@ -110,9 +110,10 @@ export AUR_PAGER=$EDITOR
 alias ls='ls --color=auto'
 alias la='ls -A'
 alias ll='la -lh'
+alias grep='grep --color=auto'
 
 # Dot files management
-# git clone --separate-git-dir=$HOME/.dotfiles https://github.com/ilango100/dotfiles [~]
+# git clone --separate-git-dir=$HOME/.dotfiles https://gitlab.com/ilango100/dotfiles [~]
 alias dotf='git --git-dir=$HOME/.dotfiles'
 # dotf config core.worktree $HOME
 # dotf config status.showUntrackedFiles no

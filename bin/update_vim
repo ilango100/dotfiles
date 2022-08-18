@@ -1,11 +1,19 @@
 #!/bin/sh
 
+set -e
+
+# Check for latest version
+latest=$(curl -l ftp://ftp.vim.org/pub/vim/unix/ | tail -n1)
+current=$(vim --version | grep -om1 '[0-9]\.[0-9]')
+if [ "vim-${current}.tar.bz2" = "$latest" ]; then
+	exit
+fi
+
 # Build env
 mkdir -p ~/build
 cd ~/build
 
 # Download latest source
-latest=$(curl -l ftp://ftp.vim.org/pub/vim/unix/ | tail -n1)
 curl -O http://ftp.vim.org/pub/vim/unix/$latest
 tar -xf $latest
 vimdir=$(echo ${latest%.tar.bz2} | tr -d '.-')
