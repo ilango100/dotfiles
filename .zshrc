@@ -76,7 +76,7 @@ zstyle ':completion:*:*:*:*:messages' format ' %F{purple} -- %d --%f'
 zstyle ':completion:*:*:*:*:warnings' format ' %F{red}-- no matches found --%f'
 
 if type dircolors > /dev/null; then
-	eval $(dircolors)
+	eval $(dircolors -b)
 fi
 zstyle ':completion:*:*:*:*:default' list-colors ${(s.:.)LS_COLORS}
 
@@ -111,6 +111,11 @@ alias ls='ls --color=auto'
 alias la='ls -A'
 alias ll='la -lh'
 alias grep='grep --color=auto'
+
+# Machine-specific
+if [ -f ~/.zshrc.local ]; then
+	. ~/.zshrc.local
+fi
 
 # Dot files management
 # git clone --separate-git-dir=$HOME/.dotfiles https://gitlab.com/ilango100/dotfiles [~]
