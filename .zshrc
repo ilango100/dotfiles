@@ -31,22 +31,22 @@ setopt	prompt_subst transient_rprompt
 # ZLE
 setopt	no_beep
 
+# Start in vim mode
+bindkey -v
+
 # Keybindings
-bindkey -M viins "^?" backward-delete-char
+bindkey "^?" backward-delete-char
 
 autoload -U history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
-bindkey -M viins "^N" history-beginning-search-forward-end
-bindkey -M viins "^P" history-beginning-search-backward-end
+bindkey "^N" history-beginning-search-forward-end
+bindkey "^P" history-beginning-search-backward-end
 
 zmodload zsh/complist
 bindkey -M menuselect '^@' vi-insert
 bindkey -M menuselect '^N' menu-complete
 bindkey -M menuselect '^P' reverse-menu-complete
-
-# Start in vim mode
-bindkey -v
 
 # Bootstrap zinit
 ZINIT_HOME=$HOME/.local/share/zinit/zinit
