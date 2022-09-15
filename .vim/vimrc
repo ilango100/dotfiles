@@ -288,4 +288,6 @@ set t_EI=[2\ q
 
 # }}}
 
+runtime vimrc.local
+
 # vim: foldmethod=marker
