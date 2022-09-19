@@ -135,7 +135,7 @@ nnoremap <Leader>/ <Cmd>execute "Rg " . input("Rg /")<CR>
 # }}}
 # Fern {{{
 
-Plug "lambdalisue/fern.vim"
+Plug "lambdalisue/fern.vim", {'branch': 'main'}
 Plug "lambdalisue/fern-hijack.vim"
 Plug "lambdalisue/nerdfont.vim"
 Plug "lambdalisue/fern-renderer-nerdfont.vim"
