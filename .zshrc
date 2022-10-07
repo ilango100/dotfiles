@@ -8,8 +8,9 @@ setopt	always_to_end \
 
 # Globbing
 setopt 	magic_equal_subst \
-		no_case_glob no_case_paths \
-		no_nomatch
+		no_case_glob \
+		no_nomatch \
+		no_case_paths
 
 # History
 SAVEHIST=1000000
