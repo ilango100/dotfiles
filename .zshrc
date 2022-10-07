@@ -45,6 +45,7 @@ bindkey "^P" history-beginning-search-backward-end
 
 zmodload zsh/complist
 bindkey -M menuselect '^@' vi-insert
+bindkey -M menuselect '^_' history-incremental-search-forward
 bindkey -M menuselect '^N' menu-complete
 bindkey -M menuselect '^P' reverse-menu-complete
 
@@ -65,7 +66,7 @@ zinit light sindresorhus/pure
 autoload -Uz compinit
 compinit
 
-zstyle ':completion:*' menu select interactive search
+zstyle ':completion:*' menu select interactive
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' completer _complete _match _approximate
