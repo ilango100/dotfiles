@@ -13,14 +13,13 @@ font pango:DejaVu Sans Mono 9
 # Use $mod+Mouse to drag or resize floating windows
 floating_modifier $mod
 
+# Terminal - wezterm
+bindsym $mod+Return exec wezterm
+
 # Launcher - rofi
 bindsym $mod+d exec rofi -show drun -show-icons
 bindsym $mod+Shift+d exec rofi -show run
 bindsym $mod+g exec rofi -show run -run-command "prime-run {cmd}"
-
-# Terminal - kitty
-bindsym $mod+Return exec kitty
-bindsym $mod+Shift+Return exec rofi -dmenu -i < $HOME/.workspaces | xargs kitty -d
 
 # Kill focused window
 bindsym $mod+Shift+q kill

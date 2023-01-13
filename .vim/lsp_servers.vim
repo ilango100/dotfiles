@@ -38,6 +38,13 @@ if executable("rust-analyzer")
 	\	allowlist: ["rust"]
 	\})
 endif
+if executable("gopls")
+	autocmd User lsp_setup call lsp#register_server({
+	\	name: "gopls",
+	\	cmd: (server_info) => ["gopls"],
+	\	allowlist: ["go"]
+	\})
+endif
 if executable("java-language-server")
 	autocmd User lsp_setup call lsp#register_server({
 	\	name: "java-language-server",

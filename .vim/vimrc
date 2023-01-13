@@ -145,7 +145,7 @@ nnoremap <leader>x <Cmd>Fern . -drawer -toggle<CR>
 nnoremap <leader>X <Cmd>Fern . -drawer -reveal=%<CR>
 
 def InitFern()
-	set nonumber
+	set nonumber norelativenumber
 	nnoremap <buffer> <C-V> <Plug>(fern-action-open:vsplit)
 	nnoremap <buffer> <C-X> <Plug>(fern-action-open:split)
 	nnoremap <buffer> <C-T> <Plug>(fern-action-open:tabedit)
@@ -162,7 +162,7 @@ g:repl_config = {
 		"formatter": function("zepl#contrib#python#formatter")
 	}
 }
-autocmd! User ZeplTerminalWinOpen set nonumber | wincmd J | set winfixheight | resize 15
+autocmd! User ZeplTerminalWinOpen set nonumber norelativenumber | wincmd J | set winfixheight | resize 15
 
 # }}}
 # Filetype specific {{{
@@ -269,7 +269,7 @@ set wildignorecase
 
 command! -nargs=* T new | wincmd J | set winfixheight | resize 15 | terminal ++curwin ++close <args>
 tnoremap <C-W><Esc> <C-W>N
-autocmd! TerminalWinOpen * set nonumber
+autocmd! TerminalWinOpen * set nonumber norelativenumber
 
 # Zepl
 runtime zepl/contrib/python.vim
