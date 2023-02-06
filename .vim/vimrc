@@ -28,6 +28,8 @@ set number
 set signcolumn=number
 set listchars=eol:$,tab:»-,space:·
 
+nnoremap <silent> <C-W>] <Cmd>vert wincmd ]<CR>
+nnoremap <silent> <C-W><C-]> <Cmd>vert wincmd ]<CR>
 nnoremap <silent> <Leader>q <Cmd>copen<CR>
 nnoremap <silent> <Leader>l <Cmd>lopen<CR>
 nnoremap <silent> <C-W>z <Cmd>wincmd z<bar>cclose<bar>lclose<CR>
@@ -202,11 +204,7 @@ Plug "prabirshrestha/vim-lsp"
 def LSPInit()
 	nmap <buffer> gy <Plug>(lsp-type-definition)
 	nmap <buffer> gd <Plug>(lsp-declaration)
-	# Using tagfunc is better, but it splits horizontal by default
-	# if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-	nmap <buffer> <C-]> <Plug>(lsp-definition)
-	nmap <buffer> <C-w>] <cmd>vsplit<CR><Plug>(lsp-definition)
-	nmap <buffer> <C-w><C-]> <cmd>vsplit<CR><Plug>(lsp-definition)
+ 	setlocal tagfunc=lsp#tagfunc
 	nmap <buffer> K <Plug>(lsp-hover)
 	nmap <buffer> gs <Plug>(lsp-document-symbol)
 	nmap <buffer> gS <Plug>(lsp-document-symbol-search)
