@@ -1,22 +1,18 @@
 #!/bin/sh
 set -e
 
-# Check for latest version
-vimhost="https://ftp.nluug.nl/pub/vim/unix/"
-latest=$(curl $vimhost | grep -o 'vim-[0-9]\.[0-9]\.tar\.bz2' | tail -n1)
-current=$(vim --version | grep -om1 '[0-9]\.[0-9]')
-if [ "vim-${current}.tar.bz2" = "$latest" ]; then
-	exit
-fi
-
 # Build env
 mkdir -p ~/build
 cd ~/build
 
-# Download latest source
-curl -O $vimhost/$latest
-tar -xf $latest
-vimdir=$(echo ${latest%.tar.bz2} | tr -d '.-')
+# Download the latest source
+curl "https://api.github.com/repos/vim/vim/tags?per_page=1" > vim_latest_tag.json
+latest_commit=$(grep "sha" vim_latest_tag.json | cut -d'"' -f4 | head -c7)
+latest_tarball_url=$(grep "tarball_url" vim_latest_tag.json | cut -d'"' -f4)
+latest_version=$(printf "%s\n" $latest_tarball_url | cut -d/ -f10)
+curl -L -o vim-$latest_version.tar.gz $latest_tarball_url
+tar -xf ~/build/vim-$latest_version.tar.gz 
+vimdir="$HOME/build/vim-vim-$latest_commit"
 cd $vimdir
 
 # Build and install vim

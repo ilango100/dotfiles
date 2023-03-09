@@ -13,6 +13,7 @@ set nostartofline
 set lazyredraw
 set scrolloff=2
 set nojoinspaces
+set completeopt=menuone,noselect,noinsert,popuphidden
 
 g:mapleader = " "
 
@@ -84,7 +85,6 @@ Plug "gruvbox-community/gruvbox"
 # Lighline {{{
 
 Plug "itchyny/lightline.vim"
-Plug "halkn/lightline-lsp"
 
 set laststatus=2
 g:lightline = {
@@ -105,23 +105,13 @@ g:lightline = {
 		"left": [["filename", "modified"]],
 		"right": [["lineinfo"], ["percent"]],
 	},
-	"component_expand": {
-		"lsp_warnings": "lightline_lsp#warnings",
-		"lsp_errors": "lightline_lsp#errors",
-		"lsp_ok": "lightline_lsp#ok",
-	},
-	"component_type": {
-		"lsp_warnings": "warning",
-		"lsp_errors": "error",
-		"lsp_ok": "middle",
-	}
 }
 
 # }}}
 # Clipboard {{{
 
 Plug "ojroques/vim-oscyank"
-autocmd! TextYankPost * if v:event.operator == "y" && v:event.regname == "" | execute 'OSCYankReg "' | endif
+autocmd! TextYankPost * if v:event.operator == "y" && v:event.regname == "" | execute 'OSCYankRegister "' | endif
 
 # }}}
 # FZF {{{
@@ -199,46 +189,50 @@ xmap s <Plug>(vsnip-cut-text)
 # }}}
 # LSP {{{
 
-Plug "prabirshrestha/vim-lsp"
+Plug "yegappan/lsp"
+
+var lspOptions = {
+	"autoPopulateDiags": true,
+	"ignoreMissingServer": true,
+	"keepFocusInReferences": true,
+	"diagLineHL": "NONE",
+	"showInlayHints": true,
+	"snippetSupport": true,
+	"usePopupInCodeAction": true,
+}
 
 def LSPInit()
-	nmap <buffer> gy <Plug>(lsp-type-definition)
-	nmap <buffer> gd <Plug>(lsp-declaration)
- 	setlocal tagfunc=lsp#tagfunc
-	nmap <buffer> K <Plug>(lsp-hover)
-	nmap <buffer> gs <Plug>(lsp-document-symbol)
-	nmap <buffer> gS <Plug>(lsp-document-symbol-search)
-	nmap <buffer> gi <Plug>(lsp-implementation)
-	nmap <buffer> gr <Plug>(lsp-references)
-	nmap <buffer> <C-k> <Plug>(lsp-signature-help)
-	imap <buffer> <C-k> <cmd>LspSignatureHelp<CR>
-	nmap <buffer> <leader>r <Plug>(lsp-rename)
-	nmap <buffer> <leader>a <Plug>(lsp-code-action)
-	nmap <buffer> <leader>e <Plug>(lsp-document-diagnostics)
-	nmap <buffer> == <Plug>(lsp-document-format)
-	vmap <buffer> = <Plug>(lsp-document-range-format)
-
-	inoremap <buffer> <expr> <C-d> lsp#scroll(+4)
-	inoremap <buffer> <expr> <C-u> lsp#scroll(-4)
+	nnoremap <buffer> gy <Cmd>LspGotoTypeDef<CR>
+	nnoremap <buffer> gY <Cmd>LspPeekTypeDef<CR>
+	nnoremap <buffer> gd <Cmd>LspGotoDeclaration<CR>
+	nnoremap <buffer> gD <Cmd>LspGotoDeclaration<CR>
+	setlocal tagfunc=lsp#lsp#TagFunc
+	nnoremap <buffer> g] <Cmd>LspPeekDefinition<CR>
+	nnoremap <buffer> gi <Cmd>LspGotoImpl<CR>
+	nnoremap <buffer> gI <Cmd>LspPeekImpl<CR>
+	nnoremap <buffer> gr <Cmd>LspShowReferences<CR>
+	nnoremap <buffer> gR <Cmd>LspPeekReferences<CR>
+	nnoremap <buffer> K <Cmd>LspHover<CR>
+	nnoremap <buffer> gs <Cmd>LspOutline<CR>
+	nnoremap <buffer> gS <Cmd>LspSymbolSearch<CR>
+	nnoremap <buffer> <C-K> <Cmd>LspShowSignature<CR>
+	inoremap <buffer> <C-K> <Cmd>LspShowSignature<CR>
+	nnoremap <buffer> <leader>r <Cmd>LspRename<CR>
+	nnoremap <buffer> <leader>a <Cmd>LspCodeAction<CR>
+	nnoremap <buffer> <leader>d <Cmd>LspDiagShow<CR>
+	nnoremap <buffer> == <Cmd>LspFormat<CR>
+	vnoremap <buffer> = <Cmd>'<,'>LspFormat<CR>
+	set omnifunc=LspOmniFunc
 enddef
-autocmd! User lsp_buffer_enabled LSPInit()
 
 import "./lsp_servers.vim"
 
-# }}}
-# Asyncomplete {{{
-
-Plug "prabirshrestha/asyncomplete.vim"
-Plug "prabirshrestha/asyncomplete-lsp.vim"
-
-set completeopt=menuone,noselect,popup
-g:asyncomplete_auto_completeopt = 0
-# g:asyncomplete_log_file = expand("~/asyncomplete.log")
-
-# Manual completion
-imap <C-Space> <Plug>(asyncomplete_force_refresh)
-# Accept completion
-inoremap <expr> <CR> pumvisible() ? asyncomplete#close_popup() : "\<CR>"
+augroup lsp
+	autocmd!
+	autocmd VimEnter * call LspOptionsSet(lspOptions)
+	autocmd VimEnter * call LspAddServer(lsp_servers.lspServers)
+	autocmd User LspAttached LSPInit()
+augroup END
 
 # }}}
 
