@@ -1,32 +1,25 @@
 [theme]
-name = "gruvbox-dark"
-
-[theme.overrides]
-separator = ""
+theme = "gruvbox-dark"
 
 [icons]
-name = "awesome6"
+icons = "awesome6"
 
 [[block]]
 block = "net"
-format = "{ssid} {ip}"
+format = " $ssid $ip "
 
 [[block]]
 block = "disk_space"
 path = "/"
-alias = "/"
 info_type = "available"
-unit = "GB"
 interval = 300
 warning = 10.0
 alert = 5.0
-format = "{icon} {available}"
+format = " $icon $available "
 
 [[block]]
 block = "memory"
-display_type = "memory"
-format_mem = "{mem_used_percents}"
-format_swap = "{swap_used_percents}"
+format = " $icon $mem_avail "
 
 [[block]]
 block = "cpu"
@@ -35,11 +28,10 @@ interval = 10
 [[block]]
 block = "load"
 interval = 10
-format = "{5m} {1m}"
+format = " $icon $5m.eng(w:4) $1m.eng(w:4) "
 
 [[block]]
 block = "music"
-buttons = ["play", "next"]
 
 [[block]]
 block = "sound"
@@ -51,4 +43,3 @@ if_command = "test -e /sys/class/power_supply/BAT1"
 [[block]]
 block = "time"
 interval = 5
-format = "%a %d/%m %R"
