@@ -3,6 +3,21 @@ vim9script
 # Load defaults
 runtime defaults.vim
 
+# Fixes {{{
+
+# Truecolors
+set t_8f=[38;2;%lu;%lu;%lum
+set t_8b=[48;2;%lu;%lu;%lum
+
+# Cursor shape
+set t_SI=[6\ q
+set t_SR=[4\ q
+set t_EI=[2\ q
+
+# Mapping
+nnoremap Y y$
+
+# }}}
 # Global {{{
 
 set hidden
@@ -241,8 +256,6 @@ plug#end()
 # }}}
 # Colorscheme {{{
 
-set t_8f=[38;2;%lu;%lu;%lum
-set t_8b=[48;2;%lu;%lu;%lum
 set termguicolors
 set background=dark
 g:gruvbox_italic = 1
@@ -267,18 +280,6 @@ autocmd! TerminalWinOpen * set nonumber norelativenumber
 
 # Zepl
 runtime zepl/contrib/python.vim
-
-# }}}
-# Vim {{{
-
-# Fixes
-nnoremap Y y$
-imap <C-@> <C-Space>
-
-# Cursor shape
-set t_SI=[6\ q
-set t_SR=[4\ q
-set t_EI=[2\ q
 
 # }}}
 
