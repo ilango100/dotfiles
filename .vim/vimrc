@@ -33,7 +33,7 @@ set completeopt=menuone,noselect,noinsert,popuphidden
 g:mapleader = " "
 
 # Save session and quit
-command! Q mksession! | qall
+command Q mksession! | qall
 
 # }}}
 # Window {{{
@@ -61,7 +61,7 @@ set smarttab
 set noexpandtab
 
 # Make the current buffer a scratch buffer
-command! Scratch set buftype=nofile | set bufhidden=hide | set noswapfile
+command Scratch set buftype=nofile | set bufhidden=hide | set noswapfile
 
 # }}}
 # Search {{{
@@ -113,7 +113,6 @@ g:lightline = {
 			["lineinfo"],
 			["percent"],
 			["filetype"],
-			["lsp_errors", "lsp_warnings", "lsp_ok"]
 		],
 	},
 	"inactive": {
@@ -150,6 +149,7 @@ g:fern#hide_cursor = 1
 g:fern#renderer = "nerdfont"
 nnoremap <leader>x <Cmd>Fern . -drawer -toggle<CR>
 nnoremap <leader>X <Cmd>Fern . -drawer -reveal=%<CR>
+
 
 def InitFern()
 	set nonumber norelativenumber
@@ -207,8 +207,6 @@ xmap s <Plug>(vsnip-cut-text)
 Plug "yegappan/lsp"
 
 var lspOptions = {
-	"autoPopulateDiags": true,
-	"ignoreMissingServer": true,
 	"keepFocusInReferences": true,
 	"diagLineHL": "NONE",
 	"showInlayHints": true,
@@ -235,9 +233,9 @@ def LSPInit()
 	nnoremap <buffer> <leader>r <Cmd>LspRename<CR>
 	nnoremap <buffer> <leader>a <Cmd>LspCodeAction<CR>
 	nnoremap <buffer> <leader>d <Cmd>LspDiagShow<CR>
-	nnoremap <buffer> == <Cmd>LspFormat<CR>
-	vnoremap <buffer> = <Cmd>'<,'>LspFormat<CR>
-	set omnifunc=LspOmniFunc
+	nnoremap <buffer> gqQ <Cmd>LspFormat<CR>
+	setlocal formatexpr=lsp#lsp#FormatExpr()
+	setlocal omnifunc=LspOmniFunc
 enddef
 
 import "./lsp_servers.vim"
@@ -274,7 +272,7 @@ set wildignorecase
 # }}}
 # Terminal {{{
 
-command! -nargs=* T new | wincmd J | set winfixheight | resize 15 | terminal ++curwin ++close <args>
+command -nargs=* T new | wincmd J | set winfixheight | resize 15 | terminal ++curwin ++close <args>
 tnoremap <C-W><Esc> <C-W>N
 autocmd! TerminalWinOpen * set nonumber norelativenumber
 
