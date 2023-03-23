@@ -97,7 +97,7 @@ Plug "tpope/vim-abolish"
 Plug "gruvbox-community/gruvbox"
 
 # }}}
-# Lighline {{{
+# Lightline {{{
 
 Plug "itchyny/lightline.vim"
 
@@ -107,18 +107,33 @@ g:lightline = {
 	"active": {
 		"left": [
 			["mode", "paste"],
-			["filename", "readonly", "modified"]
+			["filename"],
+			["readonly", "modified"],
 		],
 		"right": [
 			["lineinfo"],
-			["percent"],
 			["filetype"],
+			["lsp_warnings", "lsp_errors", "lsp_ok"],
 		],
 	},
 	"inactive": {
 		"left": [["filename", "modified"]],
-		"right": [["lineinfo"], ["percent"]],
+		"right": [["lineinfo"]],
 	},
+	"tabline": {
+		"left": [["tabs"]],
+		"right": [["close"]]
+	},
+	"component_expand": {
+		"lsp_warnings": "lightline_lsp#Warnings",
+		"lsp_errors": "lightline_lsp#Errors",
+		"lsp_ok": "lightline_lsp#OK"
+	},
+	"component_type": {
+		"lsp_warnings": "warning",
+		"lsp_errors": "error",
+		"lsp_ok": "middle",
+	}
 }
 
 # }}}
@@ -205,6 +220,7 @@ xmap s <Plug>(vsnip-cut-text)
 # LSP {{{
 
 Plug "yegappan/lsp"
+Plug "ilango100/lightline-lsp"
 
 var lspOptions = {
 	"keepFocusInReferences": true,
