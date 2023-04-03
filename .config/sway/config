@@ -178,8 +178,8 @@ bindsym $mod+v exec pavucontrol
 bindsym $mod+m exec speedcrunch
 
 # Screenshot shortcuts
-bindsym $mod+Print exec grim $(date +$(xdg-user-dir PICTURES)/Screenshot_%Y-%m-%d_%H%M%S.png)
-bindsym $mod+Shift+Print exec grim -g "$(slurp)" $(date +$(xdg-user-dir PICTURES)/Screenshot_%Y-%m-%d_%H%M%S.png)
+bindsym $mod+Print exec grim $(date +$(xdg-user-dir PICTURES)/Screenshots/Screenshot_%Y-%m-%d_%H%M%S.png)
+bindsym $mod+Shift+Print exec grim -g "$(slurp)" $(date +$(xdg-user-dir PICTURES)/Screenshots/Screenshot_%Y-%m-%d_%H%M%S.png)
 bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy -t image/png
 
 # Always floating
