@@ -3,19 +3,29 @@ vim9script
 # Load defaults
 runtime defaults.vim
 
-# Fixes {{{
+# Terminal codes {{{
+
+# https://wezfurlong.org/wezterm/escape-sequences.html
+# https://sw.kovidgoyal.net/kitty/underlines/
+# https://invisible-island.net/xterm/ctlseqs/ctlseqs.txt
+
+# Underlines
+set t_AU=[58;5;%dm
+set t_Ce=[24m
+set t_Cs=[4:3m
+set t_Us=[4:2m
+set t_ds=[4:4m
+set t_Ds=[4:5m
 
 # Truecolors
 set t_8f=[38;2;%lu;%lu;%lum
 set t_8b=[48;2;%lu;%lu;%lum
+set t_8u=[58;2;%lu;%lu;%lum
 
 # Cursor shape
 set t_SI=[6\ q
 set t_SR=[4\ q
 set t_EI=[2\ q
-
-# Mapping
-nnoremap Y y$
 
 # }}}
 # Global {{{
@@ -31,6 +41,7 @@ set nojoinspaces
 set completeopt=menuone,noselect,noinsert,popuphidden
 
 g:mapleader = " "
+nnoremap Y y$
 
 # Save session and quit
 command Q mksession! | qall
@@ -223,9 +234,10 @@ Plug "yegappan/lsp"
 Plug "ilango100/lightline-lsp"
 
 var lspOptions = {
-	"keepFocusInReferences": true,
-	"diagLineHL": "NONE",
+	"autoComplete": false,
+	"highlightDiagInline": true,
 	"showInlayHints": true,
+	"showSignature": false,
 	"snippetSupport": true,
 	"usePopupInCodeAction": true,
 }
@@ -258,8 +270,11 @@ import "./lsp_servers.vim"
 
 augroup lsp
 	autocmd!
-	autocmd VimEnter * call LspOptionsSet(lspOptions)
-	autocmd VimEnter * call LspAddServer(lsp_servers.lspServers)
+	autocmd VimEnter * {
+		call LspOptionsSet(lspOptions)
+		call LspAddServer(lsp_servers.lspServers)
+		highlight link LspDiagLine NONE
+	}
 	autocmd User LspAttached LSPInit()
 augroup END
 
