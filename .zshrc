@@ -9,16 +9,17 @@ setopt	always_to_end \
 # Globbing
 setopt 	magic_equal_subst \
 		no_case_glob \
-		no_nomatch \
-		no_case_paths
+		no_nomatch
 
 # History
 SAVEHIST=1000000
 HISTSIZE=1000000
 HISTFILE=~/.zsh_history
-setopt	hist_fcntl_lock \
-		hist_expire_dups_first hist_find_no_dups hist_ignore_dups hist_save_no_dups \
-		hist_ignore_space hist_no_store
+setopt  extended_history \
+		hist_fcntl_lock inc_append_history_time \
+		hist_expire_dups_first hist_find_no_dups \
+		hist_reduce_blanks hist_ignore_space hist_no_store
+# Use `fc -RI` to load new entries into history
 
 # Input/Output
 setopt	interactive_comments
@@ -36,8 +37,6 @@ setopt	no_beep
 bindkey -v
 
 # Keybindings
-bindkey "^?" backward-delete-char
-
 autoload -U history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
@@ -67,7 +66,7 @@ zinit light sindresorhus/pure
 autoload -Uz compinit
 compinit
 
-zstyle ':completion:*' menu select interactive
+zstyle ':completion:*' menu select
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' completer _complete _match _approximate
