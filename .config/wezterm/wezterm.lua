@@ -7,6 +7,7 @@ config.font = wezterm.font("Iosevka Term")
 config.audible_bell = "Disabled"
 config.keys = {
 	{ mods = "CTRL|SHIFT", key = "D", action = wezterm.action.ShowLauncherArgs { flags = "DOMAINS" } },
+	{ mods = "CTRL|SHIFT|ALT", key = "D", action = wezterm.action.DetachDomain("CurrentPaneDomain") },
 	{ mods = "CTRL", key = "UpArrow", action = wezterm.action.ScrollToPrompt(-1) },
 	{ mods = "CTRL", key = "DownArrow", action = wezterm.action.ScrollToPrompt(1) },
 }
