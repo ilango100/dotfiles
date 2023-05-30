@@ -234,10 +234,8 @@ Plug "yegappan/lsp"
 Plug "ilango100/lightline-lsp"
 
 var lspOptions = {
-	"autoComplete": true,
 	"highlightDiagInline": true,
 	"showInlayHints": true,
-	"showSignature": false,
 	"snippetSupport": true,
 	"usePopupInCodeAction": true,
 }
