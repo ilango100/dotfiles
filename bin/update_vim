@@ -2,17 +2,27 @@
 set -e
 
 # Build env
-mkdir -p ~/build
-cd ~/build
+if [ -z "$BUILD" ]; then
+	BUILD=$HOME/build
+fi
+mkdir -p $BUILD
+cd $BUILD
 
-# Download the latest source
-curl "https://api.github.com/repos/vim/vim/tags?per_page=1" > vim_latest_tag.json
-latest_commit=$(grep "sha" vim_latest_tag.json | cut -d'"' -f4 | head -c7)
-latest_tarball_url=$(grep "tarball_url" vim_latest_tag.json | cut -d'"' -f4)
-latest_version=$(printf "%s\n" $latest_tarball_url | cut -d/ -f10)
-curl -L -o vim-$latest_version.tar.gz $latest_tarball_url
-tar -xf vim-$latest_version.tar.gz
-vimdir="vim-vim-$latest_commit"
+VIM_VERSION=$1
+
+# Download the latest source if VIM_VERSION is not specified
+if [ -z "$VIM_VERSION" ]; then
+	VIM_VERSION=$(curl "https://api.github.com/repos/vim/vim/tags?per_page=1" | grep '"name":' | cut -d'"' -f4)
+elif ! curl -f "https://api.github.com/repos/vim/vim/git/refs/tags/$VIM_VERSION"; then
+	echo "Invalid version specified"
+	exit 1
+fi
+
+vim_commit=$(curl "https://api.github.com/repos/vim/vim/git/refs/tags/$VIM_VERSION" | grep '"sha":' | cut -d'"' -f4 | cut -c-7)
+vim_tarball_url="https://api.github.com/repos/vim/vim/tarball/refs/tags/$VIM_VERSION"
+curl -L -o vim-$vim_version.tar.gz $vim_tarball_url
+tar -xf vim-$vim_version.tar.gz
+vimdir="vim-vim-$vim_commit"
 cd $vimdir
 
 # Build and install vim
