@@ -277,6 +277,13 @@ augroup lsp
 augroup END
 
 # }}}
+# DAP {{{
+
+Plug "puremourning/vimspector"
+
+g:vimspector_enable_mappings = "HUMAN"
+
+# }}}
 
 plug#end()
 

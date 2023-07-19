@@ -33,6 +33,7 @@ cd $vimdir
 	--disable-netbeans \
 	--enable-multibyte \
 	--enable-terminal \
+	--enable-python3interp=dynamic \
 	--enable-luainterp=dynamic \
 	--with-luajit
 make -j$(nproc)
