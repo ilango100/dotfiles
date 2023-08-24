@@ -17,11 +17,6 @@ set t_Us=[4:2m
 set t_ds=[4:4m
 set t_Ds=[4:5m
 
-# Truecolors
-set t_8f=[38;2;%lu;%lu;%lum
-set t_8b=[48;2;%lu;%lu;%lum
-set t_8u=[58;2;%lu;%lu;%lum
-
 # Cursor shape
 set t_SI=[6\ q
 set t_SR=[4\ q
