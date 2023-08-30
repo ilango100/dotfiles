@@ -1,0 +1,26 @@
+snippet pydap DAP configuration for Python
+	{
+		"configurations": {
+			"Launch ${1:\${file}}": {
+				"adapter": "debugpy",
+				"filetypes": ["python"],
+				"breakpoints": {
+					"exception": {
+						"uncaught": "",
+						"raised": "",
+						"userUnhandled": ""
+					}
+				},
+				"configuration": {
+					"type": "python",
+					"request": "launch",
+					"stopOnEntry": true,
+					"python": "/usr/bin/python",
+					"program": "${1:\${file}}",
+					"args": [
+						"${2}"
+					]
+				}
+			}
+		}
+	}
