@@ -226,6 +226,7 @@ xmap s <Plug>(vsnip-cut-text)
 Plug "yegappan/lsp"
 Plug "ilango100/lightline-lsp"
 
+# Other options are set by vimcomplete
 var lspOptions = {
 	showInlayHints: true,
 	usePopupInCodeAction: true,
@@ -266,6 +267,21 @@ augroup lsp
 	}
 	autocmd User LspAttached LSPInit()
 augroup END
+
+# }}}
+# Autocomplete {{{
+
+Plug "girishji/vimcomplete"
+Plug "girishji/lsp-complete.vim"
+Plug "girishji/vsnip-complete.vim"
+
+var vimcompleteOptions = {
+	lsp: { enable: true, priority: 10 },
+	buffer: { enable: true, priority: 9, urlComplete: true },
+	vsnip: { enable: true, priority: 8 },
+	path: { enable: true, priority: 7 },
+}
+autocmd VimEnter * g:VimCompleteOptionsSet(vimcompleteOptions)
 
 # }}}
 # DAP {{{
