@@ -1,7 +1,7 @@
 snippet pydap DAP configuration for Python
 	{
 		"configurations": {
-			"Launch ${1:\${file}}": {
+			"Launch ${1:file}": {
 				"adapter": "debugpy",
 				"filetypes": ["python"],
 				"breakpoints": {
@@ -16,7 +16,7 @@ snippet pydap DAP configuration for Python
 					"request": "launch",
 					"stopOnEntry": true,
 					"python": "/usr/bin/python",
-					"program": "${1:\${file}}",
+					"program": "${1:file}",
 					"args": [
 						"${2}"
 					]

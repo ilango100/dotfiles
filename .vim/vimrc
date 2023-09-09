@@ -109,36 +109,36 @@ Plug "itchyny/lightline.vim"
 
 set laststatus=2
 g:lightline = {
-	"colorscheme": "gruvbox",
-	"active": {
-		"left": [
+	colorscheme: "gruvbox",
+	active: {
+		left: [
 			["mode", "paste"],
 			["filename"],
 			["readonly", "modified"],
 		],
-		"right": [
+		right: [
 			["lineinfo"],
 			["filetype"],
 			["lsp_warnings", "lsp_errors", "lsp_ok"],
 		],
 	},
-	"inactive": {
-		"left": [["filename", "modified"]],
-		"right": [["lineinfo"]],
+	inactive: {
+		left: [["filename", "modified"]],
+		right: [["lineinfo"]],
 	},
-	"tabline": {
-		"left": [["tabs"]],
-		"right": [["close"]]
+	tabline: {
+		left: [["tabs"]],
+		right: [["close"]]
 	},
-	"component_expand": {
-		"lsp_warnings": "lightline_lsp#Warnings",
-		"lsp_errors": "lightline_lsp#Errors",
-		"lsp_ok": "lightline_lsp#OK"
+	component_expand: {
+		lsp_warnings: "lightline_lsp#Warnings",
+		lsp_errors: "lightline_lsp#Errors",
+		lsp_ok: "lightline_lsp#OK"
 	},
-	"component_type": {
-		"lsp_warnings": "warning",
-		"lsp_errors": "error",
-		"lsp_ok": "middle",
+	component_type: {
+		lsp_warnings: "warning",
+		lsp_errors: "error",
+		lsp_ok: "middle",
 	}
 }
 
@@ -162,7 +162,7 @@ nnoremap <Leader>/ <Cmd>execute "Rg " . input("Rg /")<CR>
 # }}}
 # Fern {{{
 
-Plug "lambdalisue/fern.vim", {'branch': 'main'}
+Plug "lambdalisue/fern.vim"
 Plug "lambdalisue/fern-hijack.vim"
 Plug "lambdalisue/nerdfont.vim"
 Plug "lambdalisue/fern-renderer-nerdfont.vim"
@@ -185,9 +185,9 @@ autocmd! FileType fern InitFern()
 
 Plug "axvr/zepl.vim"
 g:repl_config = {
-	"python": {
-		"cmd": "python",
-		"formatter": function("zepl#contrib#python#formatter")
+	python: {
+		cmd: "python",
+		formatter: function("zepl#contrib#python#formatter")
 	}
 }
 autocmd! User ZeplTerminalWinOpen set nonumber norelativenumber | wincmd J | set winfixheight | resize 15
@@ -198,8 +198,6 @@ autocmd! User ZeplTerminalWinOpen set nonumber norelativenumber | wincmd J | set
 Plug "mattn/emmet-vim"
 g:user_emmet_install_global = 0
 autocmd! FileType html,css EmmetInstall
-
-Plug "hashivim/vim-terraform"
 
 Plug "chrisbra/csv.vim"
 g:csv_bind_B = 1
@@ -229,10 +227,8 @@ Plug "yegappan/lsp"
 Plug "ilango100/lightline-lsp"
 
 var lspOptions = {
-	"highlightDiagInline": true,
-	"showInlayHints": true,
-	"snippetSupport": true,
-	"usePopupInCodeAction": true,
+	showInlayHints: true,
+	usePopupInCodeAction: true,
 }
 
 def LSPInit()
