@@ -50,8 +50,8 @@ set number
 set signcolumn=number
 set listchars=eol:$,tab:»-,space:·
 
-nnoremap <silent> <C-W>] <Cmd>vert wincmd ]<CR>
-nnoremap <silent> <C-W><C-]> <Cmd>vert wincmd ]<CR>
+nnoremap <silent> <C-W>] <Cmd>vert stag<CR>
+nnoremap <silent> <C-W><C-]> <Cmd>vert stag<CR>
 nnoremap <silent> <Leader>q <Cmd>copen<CR>
 nnoremap <silent> <Leader>l <Cmd>lopen<CR>
 nnoremap <silent> <C-W>z <Cmd>wincmd z<bar>cclose<bar>lclose<CR>
@@ -80,6 +80,8 @@ set grepprg=rg\ --vimgrep
 
 # }}}
 # Plugins {{{
+
+packadd! matchit
 
 # vim-plug bootstrapping
 if empty(glob("~/.vim/autoload/plug.vim"))
@@ -212,13 +214,13 @@ Plug "hrsh7th/vim-vsnip-integ"
 Plug "rafamadriz/friendly-snippets"
 
 # Jump back and forth
-imap <expr> <Tab> vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<Tab>'
-smap <expr> <Tab> vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<Tab>'
-imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
-smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
+inoremap <expr> <Tab> vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<Tab>'
+snoremap <expr> <Tab> vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<Tab>'
+inoremap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
+snoremap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
 
 # Fill $TM_SELECTED_TEXT
-xmap s <Plug>(vsnip-cut-text)
+xnoremap s <Plug>(vsnip-cut-text)
 
 # }}}
 # LSP {{{
@@ -276,10 +278,10 @@ Plug "girishji/lsp-complete.vim"
 Plug "girishji/vsnip-complete.vim"
 
 var vimcompleteOptions = {
-	lsp: { enable: true, priority: 10 },
-	buffer: { enable: true, priority: 9, urlComplete: true },
-	vsnip: { enable: true, priority: 8 },
-	path: { enable: true, priority: 7 },
+	lsp: { enable: true, priority: 10, maxCount: 15 },
+	buffer: { enable: true, priority: 9, urlComplete: true, maxCount: 5 },
+	vsnip: { enable: true, priority: 8, maxCount: 5 },
+	path: { enable: true, priority: 7, maxCount: 5 },
 }
 autocmd VimEnter * g:VimCompleteOptionsSet(vimcompleteOptions)
 
