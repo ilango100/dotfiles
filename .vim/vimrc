@@ -292,6 +292,9 @@ Plug "puremourning/vimspector"
 
 g:vimspector_enable_mappings = "HUMAN"
 
+nmap <Leader><F12> <Plug>VimspectorUpFrame
+nmap <Leader><F11> <Plug>VimspectorDownFrame
+
 # }}}
 
 plug#end()
