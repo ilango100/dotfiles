@@ -102,7 +102,7 @@ Plug "tpope/vim-abolish"
 # }}}
 # Gruvbox {{{
 
-Plug "gruvbox-community/gruvbox"
+Plug "morhetz/gruvbox"
 
 # }}}
 # Lightline {{{
@@ -148,7 +148,10 @@ g:lightline = {
 # Clipboard {{{
 
 Plug "ojroques/vim-oscyank"
-autocmd! TextYankPost * if v:event.operator == "y" && v:event.regname == "" | execute 'OSCYankRegister "' | endif
+augroup oscyank_vimrc
+	autocmd!
+	autocmd TextYankPost * if v:event.operator == "y" && v:event.regname == "" | execute 'OSCYankRegister "' | endif
+augroup END
 
 # }}}
 # FZF {{{
@@ -213,14 +216,39 @@ Plug "hrsh7th/vim-vsnip"
 Plug "hrsh7th/vim-vsnip-integ"
 Plug "rafamadriz/friendly-snippets"
 
+# Snippet completion
+def VsnipComplete(): string
+
+	# Find prefix by searching back
+	const line = getline('.')
+	var start = col('.') - 1
+	while start > 0 && line[start - 1] =~ '\S'
+		start -= 1
+	endwhile
+
+	# Get snippets and filter using prefix
+	final matches = vsnip#get_complete_items(bufnr("%"))
+	const prefix = "^" .. line[start : col('.') - 2]
+	matches->filter((idx, val) => val.word =~ prefix)
+
+	complete(start + 1, matches)
+	return ""
+
+enddef
+
+inoremap <C-X><C-I> <C-R>=<SID>VsnipComplete()<CR>
+
 # Jump back and forth
-inoremap <expr> <Tab> vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<Tab>'
-snoremap <expr> <Tab> vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<Tab>'
+inoremap <expr> <Tab> vsnip#available(1) ? '<Plug>(vsnip-jump-next)' : '<Tab>'
+snoremap <expr> <Tab> vsnip#available(1) ? '<Plug>(vsnip-jump-next)' : '<Tab>'
 inoremap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
 snoremap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
 
-# Fill $TM_SELECTED_TEXT
-xnoremap s <Plug>(vsnip-cut-text)
+# Fill $TM_SELECTED_TEXT with deleted text
+augroup vsnip_vimrc
+	autocmd!
+	autocmd TextYankPost * if v:event.operator == "d" && v:event.regname == "" | call vsnip#selected_text(@") | endif
+augroup END
 
 # }}}
 # LSP {{{
@@ -230,6 +258,8 @@ Plug "ilango100/lightline-lsp"
 
 # Other options are set by vimcomplete
 var lspOptions = {
+	autoComplete: false,
+	omniComplete: false,
 	showInlayHints: true,
 	usePopupInCodeAction: true,
 }
@@ -249,23 +279,22 @@ def LSPInit()
 	nnoremap <buffer> gs <Cmd>LspOutline<CR>
 	nnoremap <buffer> gS <Cmd>LspSymbolSearch<CR>
 	nnoremap <buffer> <C-K> <Cmd>LspShowSignature<CR>
-	inoremap <buffer> <C-K> <Cmd>LspShowSignature<CR>
+	inoremap <buffer> <C-F> <Cmd>LspShowSignature<CR>
 	nnoremap <buffer> <leader>r <Cmd>LspRename<CR>
 	nnoremap <buffer> <leader>a <Cmd>LspCodeAction<CR>
 	nnoremap <buffer> <leader>d <Cmd>LspDiagShow<CR>
 	nnoremap <buffer> gqQ <Cmd>LspFormat<CR>
 	setlocal formatexpr=lsp#lsp#FormatExpr()
-	setlocal omnifunc=LspOmniFunc
+	setlocal completefunc=LspOmniFunc
 enddef
 
 import "./lsp_servers.vim"
 
-augroup lsp
+augroup lsp_vimrc
 	autocmd!
 	autocmd VimEnter * {
 		call LspOptionsSet(lspOptions)
 		call LspAddServer(lsp_servers.lspServers)
-		highlight link LspDiagLine NONE
 	}
 	autocmd User LspAttached LSPInit()
 augroup END
