@@ -33,10 +33,12 @@ set nostartofline
 set lazyredraw
 set scrolloff=2
 set nojoinspaces
+set complete=.,w
 set completeopt=menuone,noselect,noinsert,popuphidden
 
 g:mapleader = " "
 nnoremap Y y$
+inoremap <C-F> <C-K>
 
 # Save session and quit
 command Q mksession! | qall
@@ -148,10 +150,9 @@ g:lightline = {
 # Clipboard {{{
 
 Plug "ojroques/vim-oscyank"
-augroup oscyank_vimrc
-	autocmd!
-	autocmd TextYankPost * if v:event.operator == "y" && v:event.regname == "" | execute 'OSCYankRegister "' | endif
-augroup END
+nnoremap <Leader>y <Plug>OSCYankOperator
+nnoremap <Leader>yy <Plug>OSCYankOperator_
+vnoremap <Leader>y <Plug>OSCYankVisual
 
 # }}}
 # FZF {{{
@@ -173,9 +174,8 @@ Plug "lambdalisue/nerdfont.vim"
 Plug "lambdalisue/fern-renderer-nerdfont.vim"
 g:fern#hide_cursor = 1
 g:fern#renderer = "nerdfont"
-nnoremap <leader>x <Cmd>Fern . -drawer -toggle<CR>
-nnoremap <leader>X <Cmd>Fern . -drawer -reveal=%<CR>
-
+nnoremap <Leader>x <Cmd>Fern . -drawer -toggle<CR>
+nnoremap <Leader>X <Cmd>Fern . -drawer -reveal=%<CR>
 
 def InitFern()
 	set nonumber norelativenumber
@@ -239,16 +239,15 @@ enddef
 inoremap <C-X><C-I> <C-R>=<SID>VsnipComplete()<CR>
 
 # Jump back and forth
-inoremap <expr> <Tab> vsnip#available(1) ? '<Plug>(vsnip-jump-next)' : '<Tab>'
-snoremap <expr> <Tab> vsnip#available(1) ? '<Plug>(vsnip-jump-next)' : '<Tab>'
-inoremap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
-snoremap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
+inoremap <Leader><Tab> <Plug>(vsnip-jump-next)
+snoremap <Leader><Tab> <Plug>(vsnip-jump-next)
+inoremap <Leader><S-Tab> <Plug>(vsnip-jump-prev)
+snoremap <Leader><S-Tab> <Plug>(vsnip-jump-prev)
 
-# Fill $TM_SELECTED_TEXT with deleted text
-augroup vsnip_vimrc
-	autocmd!
-	autocmd TextYankPost * if v:event.operator == "d" && v:event.regname == "" | call vsnip#selected_text(@") | endif
-augroup END
+# Fill $TM_SELECTED_TEXT
+nnoremap s <Plug>(vsnip-cut-text)
+nnoremap ss <Plug>(vsnip-cut-text)_
+vnoremap s <Plug>(vsnip-cut-text)
 
 # }}}
 # LSP {{{
@@ -259,8 +258,11 @@ Plug "ilango100/lightline-lsp"
 # Other options are set by vimcomplete
 var lspOptions = {
 	autoComplete: false,
+	completionTextEdit: false,
 	omniComplete: false,
 	showInlayHints: true,
+	snippetSupport: true,
+	vsnipSupport: true,
 	usePopupInCodeAction: true,
 }
 
@@ -279,10 +281,10 @@ def LSPInit()
 	nnoremap <buffer> gs <Cmd>LspOutline<CR>
 	nnoremap <buffer> gS <Cmd>LspSymbolSearch<CR>
 	nnoremap <buffer> <C-K> <Cmd>LspShowSignature<CR>
-	inoremap <buffer> <C-F> <Cmd>LspShowSignature<CR>
-	nnoremap <buffer> <leader>r <Cmd>LspRename<CR>
-	nnoremap <buffer> <leader>a <Cmd>LspCodeAction<CR>
-	nnoremap <buffer> <leader>d <Cmd>LspDiagShow<CR>
+	inoremap <buffer> <C-K> <Cmd>LspShowSignature<CR>
+	nnoremap <buffer> <Leader>r <Cmd>LspRename<CR>
+	nnoremap <buffer> <Leader>a <Cmd>LspCodeAction<CR>
+	nnoremap <buffer> <Leader>d <Cmd>LspDiagShow<CR>
 	nnoremap <buffer> gqQ <Cmd>LspFormat<CR>
 	setlocal formatexpr=lsp#lsp#FormatExpr()
 	setlocal completefunc=LspOmniFunc
@@ -300,29 +302,14 @@ augroup lsp_vimrc
 augroup END
 
 # }}}
-# Autocomplete {{{
-
-Plug "girishji/vimcomplete"
-Plug "girishji/lsp-complete.vim"
-Plug "girishji/vsnip-complete.vim"
-
-var vimcompleteOptions = {
-	lsp: { enable: true, priority: 10, maxCount: 15 },
-	buffer: { enable: true, priority: 9, urlComplete: true, maxCount: 5 },
-	vsnip: { enable: true, priority: 8, maxCount: 5 },
-	path: { enable: true, priority: 7, maxCount: 5 },
-}
-autocmd VimEnter * g:VimCompleteOptionsSet(vimcompleteOptions)
-
-# }}}
 # DAP {{{
 
-Plug "puremourning/vimspector"
+Plug "puremourning/vimspector", {"do": ":VimspectorInstall --enable-python"}
 
 g:vimspector_enable_mappings = "HUMAN"
 
-nmap <Leader><F12> <Plug>VimspectorUpFrame
-nmap <Leader><F11> <Plug>VimspectorDownFrame
+nnoremap <Leader><F12> <Plug>VimspectorUpFrame
+nnoremap <Leader><F11> <Plug>VimspectorDownFrame
 
 # }}}
 
