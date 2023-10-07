@@ -38,7 +38,7 @@ set completeopt=menuone,noselect,noinsert,popuphidden
 
 g:mapleader = " "
 nnoremap Y y$
-inoremap <C-F> <C-K>
+inoremap <C-Q> <C-K>
 
 # Save session and quit
 command Q mksession! | qall
@@ -239,10 +239,10 @@ enddef
 inoremap <C-X><C-I> <C-R>=<SID>VsnipComplete()<CR>
 
 # Jump back and forth
-inoremap <Leader><Tab> <Plug>(vsnip-jump-next)
-snoremap <Leader><Tab> <Plug>(vsnip-jump-next)
-inoremap <Leader><S-Tab> <Plug>(vsnip-jump-prev)
-snoremap <Leader><S-Tab> <Plug>(vsnip-jump-prev)
+inoremap <C-F> <Plug>(vsnip-jump-next)
+snoremap <C-F> <Plug>(vsnip-jump-next)
+inoremap <C-B> <Plug>(vsnip-jump-prev)
+snoremap <C-B> <Plug>(vsnip-jump-prev)
 
 # Fill $TM_SELECTED_TEXT
 nnoremap s <Plug>(vsnip-cut-text)
