@@ -152,6 +152,7 @@ g:lightline = {
 Plug "ojroques/vim-oscyank"
 nnoremap <Leader>y <Plug>OSCYankOperator
 nnoremap <Leader>yy <Plug>OSCYankOperator_
+nnoremap <Leader>Y <Plug>OSCYankOperator$
 vnoremap <Leader>y <Plug>OSCYankVisual
 
 # }}}
@@ -247,6 +248,7 @@ snoremap <C-B> <Plug>(vsnip-jump-prev)
 # Fill $TM_SELECTED_TEXT
 nnoremap s <Plug>(vsnip-cut-text)
 nnoremap ss <Plug>(vsnip-cut-text)_
+nnoremap S <Plug>(vsnip-cut-text)$
 vnoremap s <Plug>(vsnip-cut-text)
 
 # }}}
