@@ -27,6 +27,7 @@ cd $vimdir
 
 # Build and install vim
 ./configure \
+	--prefix=$HOME/.local \
 	--without-x \
 	--disable-gui \
 	--disable-canberra \
@@ -37,4 +38,4 @@ cd $vimdir
 	--enable-luainterp=dynamic \
 	--with-luajit
 make -j$(nproc)
-sudo make install
+make install
