@@ -25,9 +25,14 @@ tar -xf vim-$vim_version.tar.gz
 vimdir="vim-vim-$vim_commit"
 cd $vimdir
 
+# Install prefix
+if [ -z "$PREFIX" ]; then
+	PREFIX=$HOME/.local
+fi
+
 # Build and install vim
 ./configure \
-	--prefix=$HOME/.local \
+	--prefix=$PREFIX \
 	--without-x \
 	--disable-gui \
 	--disable-canberra \
