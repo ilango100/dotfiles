@@ -156,15 +156,15 @@ nnoremap <Leader>Y <Plug>OSCYankOperator$
 vnoremap <Leader>y <Plug>OSCYankVisual
 
 # }}}
-# FZF {{{
+# Fuzzyy {{{
 
-Plug "junegunn/fzf"
-Plug "junegunn/fzf.vim"
-g:fzf_preview_window = []  # Disable preview
-nnoremap <Leader>f <Cmd>Files<CR>
-nnoremap <Leader>F <Cmd>GFiles --exclude-standard -cmo<CR>
-nnoremap <Leader>b <Cmd>Buffers<CR>
-nnoremap <Leader>/ <Cmd>execute "Rg " . input("Rg /")<CR>
+Plug "Donaldttt/fuzzyy"
+g:enable_fuzzyy_keymaps = 0
+nnoremap <Leader>ff <Cmd>FuzzyFiles<CR>
+nnoremap <Leader>fg <Cmd>FuzzyGitFiles<CR>
+nnoremap <Leader>fb <Cmd>FuzzyBuffers<CR>
+nnoremap <Leader>f/ <Cmd>FuzzyInBuffer<CR>
+nnoremap <Leader>f<C-]> :FuzzyGrep <C-R><C-W><CR>
 
 # }}}
 # Fern {{{
