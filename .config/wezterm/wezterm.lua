@@ -3,7 +3,10 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 config.check_for_updates = false
 config.color_scheme = "GruvboxDark"
-config.font = wezterm.font("Iosevka Term")
+config.font = wezterm.font_with_fallback({
+	"Iosevka Term",
+	{ family = "Symbols Nerd Font Mono", scale = 0.8 }
+})
 config.audible_bell = "Disabled"
 config.keys = {
 	{ mods = "CTRL|SHIFT", key = "D", action = wezterm.action.ShowLauncherArgs { flags = "DOMAINS" } },

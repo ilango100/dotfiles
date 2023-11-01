@@ -160,6 +160,12 @@ vnoremap <Leader>y <Plug>OSCYankVisual
 
 Plug "Donaldttt/fuzzyy"
 g:enable_fuzzyy_keymaps = 0
+g:fuzzyy_window_layout = {
+	"FuzzyFiles": { "preview": 0 },
+	"FuzzyGitFiles": { "preview": 0 },
+	"FuzzyBuffers": { "preview": 0 },
+	"FuzzyGrep": { "preview": 0 },
+}
 nnoremap <Leader>ff <Cmd>FuzzyFiles<CR>
 nnoremap <Leader>fg <Cmd>FuzzyGitFiles<CR>
 nnoremap <Leader>fb <Cmd>FuzzyBuffers<CR>
@@ -171,10 +177,7 @@ nnoremap <Leader>f<C-]> :FuzzyGrep <C-R><C-W><CR>
 
 Plug "lambdalisue/fern.vim"
 Plug "lambdalisue/fern-hijack.vim"
-Plug "lambdalisue/nerdfont.vim"
-Plug "lambdalisue/fern-renderer-nerdfont.vim"
 g:fern#hide_cursor = 1
-g:fern#renderer = "nerdfont"
 nnoremap <Leader>x <Cmd>Fern . -drawer -toggle<CR>
 nnoremap <Leader>X <Cmd>Fern . -drawer -reveal=%<CR>
 
@@ -338,7 +341,8 @@ set wildignorecase
 # }}}
 # Terminal {{{
 
-command -nargs=* T new | wincmd J | set winfixheight | resize 15 | terminal ++curwin ++close <args>
+set termwinsize=15x0
+command -nargs=* T new | wincmd J | set winfixheight | terminal ++curwin ++close <args>
 tnoremap <C-W><Esc> <C-W>N
 autocmd! TerminalWinOpen * set nonumber norelativenumber
 
