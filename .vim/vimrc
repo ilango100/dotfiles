@@ -33,7 +33,7 @@ set nostartofline
 set lazyredraw
 set scrolloff=2
 set nojoinspaces
-set complete=.,w
+set complete=.,w,t,i
 set completeopt=menuone,noselect,noinsert,popuphidden
 
 g:mapleader = " "
@@ -150,10 +150,13 @@ g:lightline = {
 # Clipboard {{{
 
 Plug "ojroques/vim-oscyank"
-nnoremap <Leader>y <Plug>OSCYankOperator
-nnoremap <Leader>yy <Plug>OSCYankOperator_
-nnoremap <Leader>Y <Plug>OSCYankOperator$
-vnoremap <Leader>y <Plug>OSCYankVisual
+g:oscyank_max_length = 128 * 1024  # 128 KB
+g:oscyank_silent = 1
+autocmd TextYankPost * {
+if v:event.operator == "y" && v:event.regname == ""
+    execute 'OSCYankRegister "'
+endif
+}
 
 # }}}
 # Fuzzyy {{{
@@ -179,7 +182,7 @@ Plug "lambdalisue/fern.vim"
 Plug "lambdalisue/fern-hijack.vim"
 g:fern#hide_cursor = 1
 nnoremap <Leader>x <Cmd>Fern . -drawer -toggle<CR>
-nnoremap <Leader>X <Cmd>Fern . -drawer -reveal=%<CR>
+nnoremap <Leader>X <Cmd>Fern %:h -drawer -reveal=%<CR>
 
 def InitFern()
 	set nonumber norelativenumber
