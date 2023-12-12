@@ -154,7 +154,7 @@ g:oscyank_max_length = 128 * 1024  # 128 KB
 g:oscyank_silent = 1
 autocmd TextYankPost * {
 if v:event.operator == "y" && v:event.regname == ""
-    execute 'OSCYankRegister "'
+    call OSCYankRegister(v:event.regname)
 endif
 }
 
@@ -176,21 +176,11 @@ nnoremap <Leader>f/ <Cmd>FuzzyInBuffer<CR>
 nnoremap <Leader>f<C-]> :FuzzyGrep <C-R><C-W><CR>
 
 # }}}
-# Fern {{{
+# Dirvish {{{
 
-Plug "lambdalisue/fern.vim"
-Plug "lambdalisue/fern-hijack.vim"
-g:fern#hide_cursor = 1
-nnoremap <Leader>x <Cmd>Fern . -drawer -toggle<CR>
-nnoremap <Leader>X <Cmd>Fern %:h -drawer -reveal=%<CR>
-
-def InitFern()
-	set nonumber norelativenumber
-	nnoremap <buffer> <C-V> <Plug>(fern-action-open:vsplit)
-	nnoremap <buffer> <C-X> <Plug>(fern-action-open:split)
-	nnoremap <buffer> <C-T> <Plug>(fern-action-open:tabedit)
-enddef
-autocmd! FileType fern InitFern()
+Plug "justinmk/vim-dirvish"
+g:dirvish_relative_paths = 1
+g:dirvish_mode = ':sort ,^\v(.*[\/])|\ze,'
 
 # }}}
 # Zepl {{{
