@@ -52,8 +52,8 @@ set number
 set signcolumn=number
 set listchars=eol:$,tab:»-,space:·
 
-nnoremap <silent> <C-W>] <Cmd>vert stag<CR>
-nnoremap <silent> <C-W><C-]> <Cmd>vert stag<CR>
+nnoremap <silent> <C-W>] <Cmd>vert wincmd ]<CR>
+nnoremap <silent> <C-W><C-]> <Cmd>vert wincmd ]<CR>
 nnoremap <silent> <Leader>q <Cmd>copen<CR>
 nnoremap <silent> <Leader>l <Cmd>lopen<CR>
 nnoremap <silent> <C-W>z <Cmd>wincmd z<bar>cclose<bar>lclose<CR>
