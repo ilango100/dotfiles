@@ -30,6 +30,11 @@ export final lspServers = [
 			args: [],
 	},
 	{
+			filetype: ["go"],
+			path: "gopls",
+			args: ["serve"],
+	},
+	{
 			filetype: ["lua"],
 			path: "lua-language-server",
 			args: [],
