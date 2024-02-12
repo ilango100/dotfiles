@@ -18,6 +18,10 @@ config.exit_behavior = "CloseOnCleanExit"
 config.clean_exit_codes = { 130 }
 config.exit_behavior_messaging = "Terse"
 
+config.term = "wezterm"
+config.enable_kitty_keyboard = true
+
+-- Set WSL as default if it existss
 local wsl_domains = wezterm.default_wsl_domains()
 if next(wsl_domains) then
 	config.default_domain = wsl_domains[1].name
