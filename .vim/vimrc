@@ -52,12 +52,23 @@ set number
 set signcolumn=number
 set listchars=eol:$,tab:»-,space:·
 
+# Vertical split for tag jump
 nnoremap <silent> <C-W>] <Cmd>vert wincmd ]<CR>
 nnoremap <silent> <C-W><C-]> <Cmd>vert wincmd ]<CR>
+
+# Quickfix and loclist
 nnoremap <silent> <Leader>q <Cmd>copen<CR>
 nnoremap <silent> <Leader>l <Cmd>lopen<CR>
 nnoremap <silent> <C-W>z <Cmd>wincmd z<bar>cclose<bar>lclose<CR>
 nnoremap <silent> <C-W>Q <Cmd>tabclose<CR>
+
+# <C-W> mappings
+nnoremap <C-s> <C-W>v
+nnoremap <C-q> <C-W>q
+nnoremap <C-h> <C-W>h
+nnoremap <C-j> <C-W>j
+nnoremap <C-k> <C-W>k
+nnoremap <C-l> <C-W>l
 
 # }}}
 # Buffer {{{
@@ -193,6 +204,12 @@ g:repl_config = {
 	}
 }
 autocmd! User ZeplTerminalWinOpen set nonumber norelativenumber | wincmd J | set winfixheight | resize 15
+
+Plug "~/projects/xepl.vim"
+
+nnoremap <Leader>z <Plug>XeplRun
+nnoremap <Leader>zz <Plug>XeplRun_
+vnoremap <leader>z <Plug>XeplRunV
 
 # }}}
 # Filetype specific {{{
