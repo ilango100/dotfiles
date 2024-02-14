@@ -69,6 +69,12 @@ nnoremap <C-h> <C-W>h
 nnoremap <C-j> <C-W>j
 nnoremap <C-k> <C-W>k
 nnoremap <C-l> <C-W>l
+tnoremap <C-s> <C-W>v
+tnoremap <C-q> <C-W>q
+tnoremap <C-h> <C-W>h
+tnoremap <C-j> <C-W>j
+tnoremap <C-k> <C-W>k
+tnoremap <C-l> <C-W>l
 
 # }}}
 # Buffer {{{
@@ -295,7 +301,6 @@ def LSPInit()
 	nnoremap <buffer> K <Cmd>LspHover<CR>
 	nnoremap <buffer> gs <Cmd>LspOutline<CR>
 	nnoremap <buffer> gS <Cmd>LspSymbolSearch<CR>
-	nnoremap <buffer> <C-K> <Cmd>LspShowSignature<CR>
 	inoremap <buffer> <C-K> <Cmd>LspShowSignature<CR>
 	nnoremap <buffer> <Leader>r <Cmd>LspRename<CR>
 	nnoremap <buffer> <Leader>a <Cmd>LspCodeAction<CR>
