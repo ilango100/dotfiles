@@ -13,8 +13,8 @@ font pango:DejaVu Sans Mono 9
 # Use $mod+Mouse to drag or resize floating windows
 floating_modifier $mod
 
-# Terminal - wezterm
-bindsym $mod+Return exec wezterm
+# Terminal - kitty
+bindsym $mod+Return exec kitty
 
 # Launcher - rofi
 bindsym $mod+d exec rofi -show drun -show-icons

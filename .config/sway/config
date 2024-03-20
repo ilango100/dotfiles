@@ -13,11 +13,11 @@ font pango:DejaVu Sans Mono 9
 # Use $mod+Mouse to drag or resize floating windows
 floating_modifier $mod
 
-# Terminal - wezterm
-bindsym $mod+Return exec wezterm
+# Terminal - kitty
+bindsym $mod+Return exec kitty
 
 # Launcher - fuzzel
-bindsym $mod+d exec fuzzel -T wezterm
+bindsym $mod+d exec fuzzel -T kitty
 bindsym $mod+Shift+d exec dmenu_path | fuzzel -dR | sh
 bindsym $mod+g exec dmenu_path | fuzzel -dR | xargs prime-run
 
