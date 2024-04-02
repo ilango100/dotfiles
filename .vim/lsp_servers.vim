@@ -69,11 +69,6 @@ export final lspServers = [
 
 	# Other
 	{
-		filetype: ["tex", "bib"],
-		path: "texlab",
-		args: [],
-	},
-	{
 		filetype: ["terraform", "tf"],
 		path: "terraform-ls",
 		args: ["serve"],

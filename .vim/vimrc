@@ -224,6 +224,9 @@ g:csv_bind_B = 1
 
 Plug "goerz/jupytext.vim"
 
+Plug "lervag/vimtex"
+g:vimtex_view_method = "zathura"
+
 # }}}
 # Vsnip {{{
 
@@ -275,7 +278,6 @@ Plug "ilango100/lightline-lsp"
 var lspOptions = {
 	autoComplete: false,
 	completionTextEdit: false,
-	omniComplete: false,
 	showInlayHints: true,
 	snippetSupport: true,
 	vsnipSupport: true,
@@ -302,7 +304,6 @@ def LSPInit()
 	nnoremap <buffer> <Leader>d <Cmd>LspDiagShow<CR>
 	nnoremap <buffer> gqQ <Cmd>LspFormat<CR>
 	setlocal formatexpr=lsp#lsp#FormatExpr()
-	setlocal completefunc=LspOmniFunc
 enddef
 
 import "./lsp_servers.vim"
