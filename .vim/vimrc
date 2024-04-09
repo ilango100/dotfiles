@@ -296,12 +296,12 @@ def LSPInit()
 	nnoremap <buffer> gr <Cmd>LspShowReferences<CR>
 	nnoremap <buffer> gR <Cmd>LspPeekReferences<CR>
 	nnoremap <buffer> K <Cmd>LspHover<CR>
+	inoremap <buffer> <C-K> <Cmd>LspShowSignature<CR>
 	nnoremap <buffer> gs <Cmd>LspOutline<CR>
 	nnoremap <buffer> gS <Cmd>LspSymbolSearch<CR>
-	inoremap <buffer> <C-K> <Cmd>LspShowSignature<CR>
 	nnoremap <buffer> <Leader>r <Cmd>LspRename<CR>
 	nnoremap <buffer> <Leader>a <Cmd>LspCodeAction<CR>
-	nnoremap <buffer> <Leader>d <Cmd>LspDiagShow<CR>
+	nnoremap <buffer> <Leader>d <Cmd>LspDiag show<CR>
 	nnoremap <buffer> gqQ <Cmd>LspFormat<CR>
 	setlocal formatexpr=lsp#lsp#FormatExpr()
 enddef
@@ -320,7 +320,7 @@ augroup END
 # }}}
 # DAP {{{
 
-Plug "puremourning/vimspector", {"do": ":VimspectorInstall --enable-python"}
+Plug "puremourning/vimspector"
 
 g:vimspector_enable_mappings = "HUMAN"
 
