@@ -22,6 +22,12 @@ set t_SI=[6\ q
 set t_SR=[4\ q
 set t_EI=[2\ q
 
+# Focus events
+set t_fe=[?1004h
+set t_fd=[?1004l
+set <FocusGained>=[I
+set <FocusLost>=[O
+
 # }}}
 # Global {{{
 
