@@ -177,21 +177,15 @@ endif
 }
 
 # }}}
-# Fuzzyy {{{
+# FZF {{{
 
-Plug "Donaldttt/fuzzyy"
-g:enable_fuzzyy_keymaps = 0
-g:fuzzyy_window_layout = {
-	"FuzzyFiles": { "preview": 0 },
-	"FuzzyGitFiles": { "preview": 0 },
-	"FuzzyBuffers": { "preview": 0 },
-	"FuzzyGrep": { "preview": 0 },
-}
-nnoremap <Leader>ff <Cmd>FuzzyFiles<CR>
-nnoremap <Leader>fg <Cmd>FuzzyGitFiles<CR>
-nnoremap <Leader>fb <Cmd>FuzzyBuffers<CR>
-nnoremap <Leader>f/ <Cmd>FuzzyInBuffer<CR>
-nnoremap <Leader>f<C-]> :FuzzyGrep <C-R><C-W><CR>
+Plug "junegunn/fzf"
+Plug "junegunn/fzf.vim"
+g:fzf_preview_window = []
+nnoremap <Leader>ff <Cmd>Files<CR>
+nnoremap <Leader>fg <Cmd>GFiles<CR>
+nnoremap <Leader>fb <Cmd>Buffers<CR>
+nnoremap <Leader>f/ :Rg <C-R><C-W>
 
 # }}}
 # Dirvish {{{
