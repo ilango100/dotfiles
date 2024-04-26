@@ -1,0 +1,9 @@
+line-length = 100
+preview = true
+
+[lint]
+select = ["F", "E", "W", "C90", "I", "UP", "RUF"]
+
+[format]
+preview = true
+
