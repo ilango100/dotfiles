@@ -90,6 +90,12 @@ zinit load junegunn/fzf
 zinit ice src"shell/key-bindings.zsh" wait lucid
 zinit load junegunn/fzf
 
+# FZF tab completion
+zinit ice src"zsh/fzf-zsh-completion.sh"
+zinit load lincheney/fzf-tab-completion
+bindkey "^X" fzf_completion
+zstyle ':completion:*' fzf-search-display true
+
 # Syntax highlighting
 zinit ice wait lucid
 zinit load zdharma-continuum/fast-syntax-highlighting
