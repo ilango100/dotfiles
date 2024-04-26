@@ -172,7 +172,7 @@ bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 
 # Application shortcuts
-bindsym $mod+f exec MOZ_ENABLE_WAYLAND=1 firefox
+bindsym $mod+f exec firefox
 bindsym $mod+c exec google-chrome-stable
 bindsym $mod+v exec pavucontrol
 bindsym $mod+m exec speedcrunch
@@ -188,6 +188,5 @@ for_window [title="SpeedCrunch"] floating enable
 for_window [app_id="pinentry-qt"] floating enable
 
 # Startup applications
-exec cmst -m
 exec blueman-applet
 exec --no-startup-id $HOME/bin/battery.sh
