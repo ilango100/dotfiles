@@ -89,6 +89,9 @@ zinit ice from"gh-r" as"program" id-as"fzf-bin"
 zinit load junegunn/fzf
 zinit ice src"shell/key-bindings.zsh" wait lucid
 zinit load junegunn/fzf
+zinit ice src"zsh/fzf-zsh-completion.sh" wait lucid
+zinit load lincheney/fzf-tab-completion
+bindkey '^I' fzf_completion
 
 # FZF tab completion
 zinit ice src"zsh/fzf-zsh-completion.sh"
