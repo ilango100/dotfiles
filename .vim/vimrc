@@ -102,6 +102,7 @@ set grepprg=rg\ --vimgrep
 # Plugins {{{
 
 packadd! matchit
+packadd! comment
 
 # vim-plug bootstrapping
 if empty(glob("~/.vim/autoload/plug.vim"))
@@ -112,7 +113,6 @@ plug#begin()
 
 # General {{{
 
-Plug "tpope/vim-commentary"
 Plug "tpope/vim-surround"
 Plug "tpope/vim-fugitive"
 Plug "tpope/vim-repeat"
@@ -225,7 +225,7 @@ g:csv_bind_B = 1
 Plug "goerz/jupytext.vim"
 
 Plug "lervag/vimtex"
-g:vimtex_view_method = "zathura"
+g:vimtex_view_method = "zathura_simple"
 
 # }}}
 # Vsnip {{{
