@@ -10,23 +10,23 @@ runtime defaults.vim
 # https://invisible-island.net/xterm/ctlseqs/ctlseqs.txt
 
 # Underlines
-set t_AU=[58;5;%dm
-set t_Ce=[24m
-set t_Cs=[4:3m
-set t_Us=[4:2m
-set t_ds=[4:4m
-set t_Ds=[4:5m
+&t_AU = "\<Esc>[58;5;%dm"
+&t_Ce = "\<Esc>[24m"
+&t_Cs = "\<Esc>[4:3m"
+&t_Us = "\<Esc>[4:2m"
+&t_ds = "\<Esc>[4:4m"
+&t_Ds = "\<Esc>[4:5m"
 
 # Cursor shape
-set t_SI=[6\ q
-set t_SR=[4\ q
-set t_EI=[2\ q
+&t_SI = "\<Esc>[6 q"
+&t_SR = "\<Esc>[4 q"
+&t_EI = "\<Esc>[2 q"
 
 # Focus events
-set t_fe=[?1004h
-set t_fd=[?1004l
-set <FocusGained>=[I
-set <FocusLost>=[O
+&t_fe = "\<Esc>[?1004h"
+&t_fd = "\<Esc>[?1004l"
+execute "set <FocusGained>=\<Esc>[I"
+execute "set <FocusLost>=\<Esc>[O"
 
 # }}}
 # Global {{{
@@ -34,20 +34,33 @@ set <FocusLost>=[O
 set hidden
 set splitright
 set splitbelow
-set fillchars=vert:│
 set nostartofline
-set lazyredraw
 set scrolloff=2
 set nojoinspaces
-set complete=.,w,t,i
 set completeopt=menuone,noselect,noinsert,popuphidden
 
-g:mapleader = " "
-nnoremap Y y$
-inoremap <C-Q> <C-K>
+# Appearance
+set background=dark
+set termguicolors
+set fillchars=vert:│
+set listchars=eol:$,tab:»-,space:·
+set lazyredraw
 
-# Save session and quit
-command Q mksession! | qall
+# Search
+set ignorecase
+set smartcase
+set nohlsearch
+set incsearch
+set grepprg=rg\ --vimgrep
+
+# Cmdline
+set laststatus=2
+set showcmd
+set noshowmode
+set shortmess=aOTIc
+set wildmenu
+set wildoptions=fuzzy,pum,tagfile
+set wildignorecase
 
 # }}}
 # Window {{{
@@ -56,7 +69,24 @@ set nowrap
 set linebreak
 set number
 set signcolumn=number
-set listchars=eol:$,tab:»-,space:·
+
+# }}}
+# Buffer {{{
+
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set smarttab
+set noexpandtab
+set complete=.,w
+set undofile
+
+# }}}
+# Mappings {{{
+
+# Use space for leader
+g:mapleader = " "
+nnoremap Y y$
 
 # Vertical split for tag jump
 nnoremap <silent> <C-W>] <Cmd>vert wincmd ]<CR>
@@ -76,27 +106,20 @@ nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
 nnoremap <C-L> <C-W>l
 tnoremap <C-K> <C-W>k
+tnoremap <C-E> <C-W>N
 
 # }}}
-# Buffer {{{
-
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set smarttab
-set noexpandtab
+# Commands {{{
 
 # Make the current buffer a scratch buffer
-command Scratch set buftype=nofile | set bufhidden=hide | set noswapfile
+command! Scratch set buftype=nofile | set bufhidden=hide | set noswapfile
 
-# }}}
-# Search {{{
+# New terminal at the bottom
+command! -nargs=* T new | wincmd J | set nonumber norelativenumber winfixheight | resize 15 | terminal ++curwin ++close <args>
 
-set ignorecase
-set smartcase
-set nohlsearch
-set incsearch
-set grepprg=rg\ --vimgrep
+augroup vimrc
+	autocmd!
+augroup END
 
 # }}}
 # Plugins {{{
@@ -123,13 +146,13 @@ Plug "tpope/vim-abolish"
 # Gruvbox {{{
 
 Plug "morhetz/gruvbox"
+g:gruvbox_italic = 1
 
 # }}}
 # Lightline {{{
 
 Plug "itchyny/lightline.vim"
 
-set laststatus=2
 g:lightline = {
 	colorscheme: "gruvbox",
 	active: {
@@ -170,7 +193,7 @@ g:lightline = {
 Plug "ojroques/vim-oscyank"
 g:oscyank_max_length = 128 * 1024  # 128 KB
 g:oscyank_silent = 1
-autocmd TextYankPost * {
+autocmd vimrc TextYankPost * {
 if v:event.operator == "y" && v:event.regname == ""
     call OSCYankRegister(v:event.regname)
 endif
@@ -204,20 +227,15 @@ g:repl_config = {
 		formatter: function("zepl#contrib#python#formatter")
 	}
 }
-autocmd! User ZeplTerminalWinOpen set nonumber norelativenumber | wincmd J | set winfixheight | resize 15
-
-Plug "~/projects/xepl.vim"
-
-nnoremap <Leader>z <Plug>XeplRun
-nnoremap <Leader>zz <Plug>XeplRun_
-vnoremap <leader>z <Plug>XeplRunV
+autocmd vimrc VimEnter * runtime zepl/contrib/python.vim
+autocmd vimrc User ZeplTerminalWinOpen set nonumber norelativenumber | wincmd J | set winfixheight | resize 15
 
 # }}}
 # Filetype specific {{{
 
 Plug "mattn/emmet-vim"
 g:user_emmet_install_global = 0
-autocmd! FileType html,css EmmetInstall
+autocmd vimrc FileType html,css EmmetInstall
 
 Plug "chrisbra/csv.vim"
 g:csv_bind_B = 1
@@ -254,7 +272,7 @@ def VsnipComplete(): string
 
 enddef
 
-inoremap <C-X><C-I> <C-R>=<SID>VsnipComplete()<CR>
+inoremap <C-X><C-A> <C-R>=<SID>VsnipComplete()<CR>
 
 # Jump back and forth
 inoremap <C-F> <Plug>(vsnip-jump-next)
@@ -296,7 +314,7 @@ def LSPInit()
 	nnoremap <buffer> gr <Cmd>LspShowReferences<CR>
 	nnoremap <buffer> gR <Cmd>LspPeekReferences<CR>
 	nnoremap <buffer> K <Cmd>LspHover<CR>
-	inoremap <buffer> <C-K> <Cmd>LspShowSignature<CR>
+	inoremap <buffer> <C-Q> <Cmd>LspShowSignature<CR>
 	nnoremap <buffer> gs <Cmd>LspOutline<CR>
 	nnoremap <buffer> gS <Cmd>LspSymbolSearch<CR>
 	nnoremap <buffer> <Leader>r <Cmd>LspRename<CR>
@@ -308,14 +326,11 @@ enddef
 
 import "./lsp_servers.vim"
 
-augroup lsp_vimrc
-	autocmd!
-	autocmd VimEnter * {
-		call LspOptionsSet(lspOptions)
-		call LspAddServer(lsp_servers.lspServers)
-	}
-	autocmd User LspAttached LSPInit()
-augroup END
+autocmd vimrc VimEnter * {
+	call LspOptionsSet(lspOptions)
+	call LspAddServer(lsp_servers.lspServers)
+}
+autocmd vimrc User LspAttached LSPInit()
 
 # }}}
 # DAP {{{
@@ -332,35 +347,8 @@ nnoremap <Leader><F11> <Plug>VimspectorDownFrame
 plug#end()
 
 # }}}
-# Colorscheme {{{
 
-set termguicolors
-set background=dark
-g:gruvbox_italic = 1
 colorscheme gruvbox
-
-# }}}
-# Cmdline {{{
-
-set showcmd
-set noshowmode
-set shortmess=aOTIc
-set wildmenu
-set wildoptions=fuzzy,pum,tagfile
-set wildignorecase
-
-# }}}
-# Terminal {{{
-
-set termwinsize=15x0
-command -nargs=* T new | wincmd J | set winfixheight | terminal ++curwin ++close <args>
-tnoremap <C-E> <C-W>N
-autocmd! TerminalWinOpen * set nonumber norelativenumber
-
-# Zepl
-runtime zepl/contrib/python.vim
-
-# }}}
 
 runtime vimrc.local
 
