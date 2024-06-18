@@ -93,8 +93,8 @@ nnoremap <silent> <C-W>] <Cmd>vert wincmd ]<CR>
 nnoremap <silent> <C-W><C-]> <Cmd>vert wincmd ]<CR>
 
 # Quickfix and loclist
-nnoremap <silent> <Leader>q <Cmd>copen<CR>
-nnoremap <silent> <Leader>l <Cmd>lopen<CR>
+nnoremap <silent> <Leader>lq <Cmd>cwindow<CR>
+nnoremap <silent> <Leader>ll <Cmd>lwindow<CR>
 nnoremap <silent> <C-W>z <Cmd>wincmd z<bar>cclose<bar>lclose<CR>
 nnoremap <silent> <C-W>Q <Cmd>tabclose<CR>
 
@@ -295,38 +295,40 @@ Plug "ilango100/lightline-lsp"
 # Other options are set by vimcomplete
 var lspOptions = {
 	autoComplete: false,
+	autoPopulateDiags: true,
 	completionTextEdit: false,
-	showInlayHints: true,
 	snippetSupport: true,
 	vsnipSupport: true,
 	usePopupInCodeAction: true,
 }
 
 def LSPInit()
-	nnoremap <buffer> gy <Cmd>LspGotoTypeDef<CR>
-	nnoremap <buffer> gY <Cmd>LspPeekTypeDef<CR>
-	nnoremap <buffer> gd <Cmd>LspGotoDeclaration<CR>
-	nnoremap <buffer> gD <Cmd>LspGotoDeclaration<CR>
 	setlocal tagfunc=lsp#lsp#TagFunc
 	nnoremap <buffer> g] <Cmd>LspPeekDefinition<CR>
-	nnoremap <buffer> gi <Cmd>LspGotoImpl<CR>
-	nnoremap <buffer> gI <Cmd>LspPeekImpl<CR>
-	nnoremap <buffer> gr <Cmd>LspShowReferences<CR>
-	nnoremap <buffer> gR <Cmd>LspPeekReferences<CR>
+	nnoremap <buffer> gd <Cmd>LspGotoDeclaration<CR>
+	nnoremap <buffer> gD <Cmd>LspPeekDeclaration<CR>
+	nnoremap <buffer> gy <Cmd>LspGotoTypeDef<CR>
+	nnoremap <buffer> gY <Cmd>LspPeekTypeDef<CR>
+	nnoremap <buffer> gl <Cmd>LspGotoImpl<CR>
+	nnoremap <buffer> gL <Cmd>LspPeekImpl<CR>
+	nnoremap <buffer> gb <Cmd>LspShowReferences<CR>
+	nnoremap <buffer> gB <Cmd>LspPeekReferences<CR>
 	nnoremap <buffer> K <Cmd>LspHover<CR>
 	inoremap <buffer> <C-Q> <Cmd>LspShowSignature<CR>
-	nnoremap <buffer> gs <Cmd>LspOutline<CR>
-	nnoremap <buffer> gS <Cmd>LspSymbolSearch<CR>
-	nnoremap <buffer> <Leader>r <Cmd>LspRename<CR>
-	nnoremap <buffer> <Leader>a <Cmd>LspCodeAction<CR>
-	nnoremap <buffer> <Leader>d <Cmd>LspDiag show<CR>
+	nnoremap <buffer> <Leader>lo <Cmd>LspOutline<CR>
+	nnoremap <buffer> <Leader>ls <Cmd>LspDocumentSymbol<CR>
+	nnoremap <buffer> <Leader>lS <Cmd>LspSymbolSearch<CR>
+	nnoremap <buffer> <Leader>lr <Cmd>LspRename<CR>
+	nnoremap <buffer> <Leader>la <Cmd>LspCodeAction<CR>
+	nnoremap <buffer> <Leader>ld <Cmd>LspDiag show<CR>
+	nnoremap <buffer> <Leader>lf <Cmd>LspFold<CR>
 	nnoremap <buffer> gqQ <Cmd>LspFormat<CR>
 	setlocal formatexpr=lsp#lsp#FormatExpr()
 enddef
 
 import "./lsp_servers.vim"
 
-autocmd vimrc VimEnter * {
+autocmd vimrc User LspSetup {
 	call LspOptionsSet(lspOptions)
 	call LspAddServer(lsp_servers.lspServers)
 }
