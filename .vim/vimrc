@@ -37,7 +37,7 @@ set splitbelow
 set nostartofline
 set scrolloff=2
 set nojoinspaces
-set completeopt=menuone,noselect,noinsert,popuphidden
+set completeopt=menuone,noselect,noinsert,popuphidden,fuzzy
 
 # Appearance
 set background=dark
