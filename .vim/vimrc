@@ -321,7 +321,7 @@ def LSPInit()
 	nnoremap <buffer> <Leader>lr <Cmd>LspRename<CR>
 	nnoremap <buffer> <Leader>la <Cmd>LspCodeAction<CR>
 	nnoremap <buffer> <Leader>ld <Cmd>LspDiag show<CR>
-	nnoremap <buffer> <Leader>lf <Cmd>LspFold<CR>
+	nnoremap <buffer> <Leader>lf <Cmd>LspFold<bar>set foldcolumn=0<CR>
 	nnoremap <buffer> gqQ <Cmd>LspFormat<CR>
 	setlocal formatexpr=lsp#lsp#FormatExpr()
 enddef
