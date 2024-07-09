@@ -5,22 +5,27 @@ runtime defaults.vim
 
 # Terminal codes {{{
 
-# https://wezfurlong.org/wezterm/escape-sequences.html
-# https://sw.kovidgoyal.net/kitty/underlines/
 # https://invisible-island.net/xterm/ctlseqs/ctlseqs.txt
 
+# Cursor shape
+&t_SI = "\<Esc>[6 q"
+&t_SR = "\<Esc>[4 q"
+&t_EI = "\<Esc>[2 q"
+
+# Bracketed paste
+&t_BE = "\<Esc>[?2004h"
+&t_BD = "\<Esc>[?2004l"
+&t_PS = "\<Esc>[200~"
+&t_PE = "\<Esc>[201~"
+
 # Underlines
+# https://sw.kovidgoyal.net/kitty/underlines/
 &t_AU = "\<Esc>[58;5;%dm"
 &t_Ce = "\<Esc>[24m"
 &t_Cs = "\<Esc>[4:3m"
 &t_Us = "\<Esc>[4:2m"
 &t_ds = "\<Esc>[4:4m"
 &t_Ds = "\<Esc>[4:5m"
-
-# Cursor shape
-&t_SI = "\<Esc>[6 q"
-&t_SR = "\<Esc>[4 q"
-&t_EI = "\<Esc>[2 q"
 
 # Focus events
 &t_fe = "\<Esc>[?1004h"
