@@ -100,8 +100,6 @@ zinit load zdharma-continuum/fast-syntax-highlighting
 # Oh My Zsh plugins
 zinit ice wait lucid
 zinit snippet OMZP::sudo
-zinit ice wait lucid
-zinit snippet OMZP::gpg-agent
 
 # Environment
 path=(~/bin ~/.local/bin $path)
