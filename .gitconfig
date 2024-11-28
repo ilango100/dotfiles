@@ -15,3 +15,5 @@
 	required = true
 [lfs]
 	activitytimeout = 0
+[includeIf "hasconfig:remote.*.url:git@github.com:ilango100/**"]
+	path = ~/.config/git/personal
