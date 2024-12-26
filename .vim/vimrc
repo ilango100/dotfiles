@@ -257,6 +257,8 @@ Plug "hrsh7th/vim-vsnip"
 Plug "hrsh7th/vim-vsnip-integ"
 Plug "rafamadriz/friendly-snippets"
 
+g:vsnip_snippet_dir = expand("~/.config/vsnip")
+
 # Snippet completion
 def VsnipComplete(): string
 
