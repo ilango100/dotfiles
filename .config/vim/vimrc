@@ -133,8 +133,8 @@ packadd! matchit
 packadd! comment
 
 # vim-plug bootstrapping
-if empty(glob("~/.vim/autoload/plug.vim"))
-	!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+if empty(glob(expand("$MYVIMDIR/autoload/plug.vim")))
+	!curl -fLo $MYVIMDIR/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
 
 plug#begin()
@@ -257,7 +257,7 @@ Plug "hrsh7th/vim-vsnip"
 Plug "hrsh7th/vim-vsnip-integ"
 Plug "rafamadriz/friendly-snippets"
 
-g:vsnip_snippet_dir = expand("~/.config/vsnip")
+g:vsnip_snippet_dir = expand("$MYVIMDIR/vsnip")
 
 # Snippet completion
 def VsnipComplete(): string
