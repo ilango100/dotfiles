@@ -62,7 +62,7 @@ export final lspServers = [
 		args: ["--stdio"],
 	},
 	{
-		filetype: ["javascript", "typescript"],
+		filetype: ["javascript", "typescript", "javascriptreact"],
 		path: "typescript-language-server",
 		args: ["--stdio"],
 	},

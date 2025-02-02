@@ -238,15 +238,22 @@ autocmd vimrc User ZeplTerminalWinOpen set nonumber norelativenumber | wincmd J 
 # }}}
 # Filetype specific {{{
 
+# React
+Plug "maxmellon/vim-jsx-pretty"
+
+# HTML
 Plug "mattn/emmet-vim"
 g:user_emmet_install_global = 0
-autocmd vimrc FileType html,css EmmetInstall
+autocmd vimrc FileType html,css,javascriptreact EmmetInstall
 
+# CSV
 Plug "chrisbra/csv.vim"
 g:csv_bind_B = 1
 
+# Jupyter notebooks
 Plug "goerz/jupytext.vim"
 
+# LaTeX
 Plug "lervag/vimtex"
 g:vimtex_view_method = "zathura_simple"
 
