@@ -78,6 +78,11 @@ export final lspServers = [
 		path: "R",
 		args: ["--slave", "-e", "languageserver::run()"],
 	},
+	{
+		filetype: ["cmake"],
+		path: "cmake-language-server",
+		args: [],
+	}
 ]
 
 filter(lspServers, (idx, val) => executable(val.path))
