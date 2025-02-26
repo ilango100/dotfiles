@@ -24,3 +24,20 @@ snippet pydap DAP configuration for Python
 			}
 		}
 	}
+
+snippet cdap DAP configuration for C/C++/Rust
+	{
+	  "configurations": {
+		"Launch ${1:file}": {
+		  "adapter": "CodeLLDB",
+		  "filetypes": [ "c", "cpp", "rust" ],
+		  "configuration": {
+			"request": "launch",
+			"program": "${1:file}",
+			"args": [
+				"${2}"
+			]
+		  }
+		}
+	  }
+	}
