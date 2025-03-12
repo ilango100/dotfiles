@@ -86,6 +86,9 @@ set smarttab
 set noexpandtab
 set complete=.,w
 set undofile
+if has("win32")
+	set undodir=$TEMP
+endif
 
 # }}}
 # Mappings {{{
