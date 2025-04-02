@@ -59,10 +59,13 @@ set nohlsearch
 set incsearch
 set grepprg=rg\ --vimgrep
 
-# Cmdline
+# Statusline
 set laststatus=2
+set statusline=%<%f\ %([%H%W%M%R]%)
+
+# Cmdline
 set showcmd
-set noshowmode
+set showmode
 set shortmess=aOTIc
 set wildmenu
 set wildoptions=fuzzy,pum,tagfile
@@ -156,45 +159,6 @@ Plug "tpope/vim-abolish"
 
 Plug "morhetz/gruvbox"
 g:gruvbox_italic = 1
-
-# }}}
-# Lightline {{{
-
-Plug "itchyny/lightline.vim"
-
-g:lightline = {
-	colorscheme: "gruvbox",
-	active: {
-		left: [
-			["mode", "paste"],
-			["filename"],
-			["readonly", "modified"],
-		],
-		right: [
-			["lineinfo"],
-			["filetype"],
-			["lsp_warnings", "lsp_errors", "lsp_ok"],
-		],
-	},
-	inactive: {
-		left: [["filename", "modified"]],
-		right: [["lineinfo"]],
-	},
-	tabline: {
-		left: [["tabs"]],
-		right: [["close"]]
-	},
-	component_expand: {
-		lsp_warnings: "lightline_lsp#Warnings",
-		lsp_errors: "lightline_lsp#Errors",
-		lsp_ok: "lightline_lsp#OK"
-	},
-	component_type: {
-		lsp_warnings: "warning",
-		lsp_errors: "error",
-		lsp_ok: "middle",
-	}
-}
 
 # }}}
 # Clipboard {{{
@@ -308,7 +272,6 @@ vnoremap s <Plug>(vsnip-cut-text)
 # LSP {{{
 
 Plug "yegappan/lsp"
-Plug "ilango100/lightline-lsp"
 
 # Other options are set by vimcomplete
 var lspOptions = {
