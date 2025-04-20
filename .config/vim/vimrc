@@ -71,6 +71,12 @@ set wildmenu
 set wildoptions=fuzzy,pum,tagfile
 set wildignorecase
 
+# MS-Windows
+if has("win32")
+	set directory=$TEMP
+	set undodir=$TEMP
+endif
+
 # }}}
 # Window {{{
 
@@ -89,9 +95,6 @@ set smarttab
 set noexpandtab
 set complete=.,w
 set undofile
-if has("win32")
-	set undodir=$TEMP
-endif
 
 # }}}
 # Mappings {{{
@@ -142,7 +145,7 @@ packadd! comment
 
 # vim-plug bootstrapping
 if empty(glob(expand("$MYVIMDIR/autoload/plug.vim")))
-	!curl -fLo $MYVIMDIR/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	system($"curl -fLo {$MYVIMDIR}/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim")
 endif
 
 plug#begin()
