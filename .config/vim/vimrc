@@ -124,6 +124,9 @@ tnoremap <C-J> <C-W>j
 tnoremap <C-K> <C-W>k
 tnoremap <C-E> <C-W>N
 
+# Copy current path
+nnoremap <silent> ya/ <Cmd>call setreg("", expand("%:p"))<bar>call OSCYankRegister("")<CR>
+
 # }}}
 # Commands {{{
 
