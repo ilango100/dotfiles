@@ -25,3 +25,6 @@ tags
 *.ori
 *.orig
 *.tmp
+
+# Vimspector
+.vimspector.json
