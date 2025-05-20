@@ -1,0 +1,40 @@
+#!/bin/sh
+set -e
+
+# Build env
+if [ -z "$BUILD" ]; then
+	BUILD=$HOME/build
+fi
+mkdir -p $BUILD
+cd $BUILD
+
+# Install prefix
+if [ -z "$PREFIX" ]; then
+	PREFIX=$HOME/.local
+fi
+
+version="5.9"
+tarball_url="https://sourceforge.net/projects/zsh/files/zsh/${version}/zsh-${version}.tar.xz/download"
+tarball_path="zsh-${version}.tar.xz"
+curl -L -o $tarball_path $tarball_url
+tar -xf $tarball_path
+
+src_path="zsh-${version}"
+cd $src_path
+
+# Apply patches
+curl -L "https://gitlab.archlinux.org/archlinux/packaging/packages/zsh/-/raw/main/0005-52383-avoid-incompatible-pointer-types.patch" | patch -Np1
+
+# Configure
+./configure \
+	--prefix=$PREFIX \
+	--disable-etcdir \
+	--with-term-lib='ncursesw' \
+	--enable-multibyte \
+	--enable-function-subdirs
+
+# Build
+make -j$(nproc)
+
+# Install
+make install
