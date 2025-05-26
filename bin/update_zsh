@@ -13,6 +13,7 @@ if [ -z "$PREFIX" ]; then
 	PREFIX=$HOME/.local
 fi
 
+# Download source
 version="5.9"
 tarball_url="https://sourceforge.net/projects/zsh/files/zsh/${version}/zsh-${version}.tar.xz/download"
 tarball_path="zsh-${version}.tar.xz"
