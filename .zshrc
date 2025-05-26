@@ -115,7 +115,7 @@ alias ll='la -lh'
 alias grep='grep --color=auto'
 
 # Dot files management
-# git clone --separate-git-dir=$HOME/.dotfiles https://gitlab.com/ilango100/dotfiles.git
+# git clone --separate-git-dir=$HOME/.dotfiles https://github.com/ilango100/dotfiles.git
 alias dotf='git --git-dir=$HOME/.dotfiles'
 # dotf config core.worktree $HOME
 # dotf config status.showUntrackedFiles no
