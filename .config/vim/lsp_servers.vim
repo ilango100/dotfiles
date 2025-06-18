@@ -79,6 +79,11 @@ export final lspServers = [
 		args: ["--slave", "-e", "languageserver::run()"],
 	},
 	{
+		filetype: ["pdll"],
+		path: "./build/bin/mlir-pdll-lsp-server",
+		args: []
+	},
+	{
 		filetype: ["cmake"],
 		path: "cmake-language-server",
 		args: [],
