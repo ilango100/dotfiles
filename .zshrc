@@ -36,6 +36,22 @@ setopt	no_beep
 # Start in vim mode
 bindkey -v
 
+# Zstyle configs
+zstyle ':completion:*' menu select
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' completer _complete _match _approximate
+
+zstyle ':completion:*:*:*:*:corrections' format '!- %d (errors: %e) -!'
+zstyle ':completion:*:*:*:*:descriptions' format '-- %d --'
+zstyle ':completion:*:*:*:*:messages' format '-- %d --'
+zstyle ':completion:*:*:*:*:warnings' format '-- no matches found --'
+
+if type dircolors > /dev/null; then
+	eval $(dircolors -b)
+fi
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
 # Keybindings
 autoload -U history-search-end
 zle -N history-beginning-search-backward-end history-search-end
@@ -62,44 +78,28 @@ PURE_GIT_PULL=0
 zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
 zinit light sindresorhus/pure
 
-# Completion
-autoload -Uz compinit
-compinit
-
-zstyle ':completion:*' menu select
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' completer _complete _match _approximate
-
-zstyle ':completion:*:*:*:*:corrections' format '%F{yellow}!- %d (errors: %e) -!%f'
-zstyle ':completion:*:*:*:*:descriptions' format '%F{blue}-- %D %d --%f'
-zstyle ':completion:*:*:*:*:messages' format ' %F{purple} -- %d --%f'
-zstyle ':completion:*:*:*:*:warnings' format ' %F{red}-- no matches found --%f'
-
-if type dircolors > /dev/null; then
-	eval $(dircolors -b)
-fi
-zstyle ':completion:*:*:*:*:default' list-colors ${(s.:.)LS_COLORS}
-
 # Plugins
 zinit light zsh-users/zsh-completions
 
 # FZF
 zinit ice from"gh-r" as"program" id-as"fzf-bin"
-zinit load junegunn/fzf
+zinit light junegunn/fzf
 zinit ice src"shell/key-bindings.zsh" wait lucid
-zinit load junegunn/fzf
-zinit ice src"zsh/fzf-zsh-completion.sh" wait lucid
-zinit load lincheney/fzf-tab-completion
-bindkey '^I' fzf_completion
+zinit light junegunn/fzf
+zinit ice wait lucid
+zinit light Aloxaf/fzf-tab
 
 # Syntax highlighting
 zinit ice wait lucid
-zinit load zdharma-continuum/fast-syntax-highlighting
+zinit light zdharma-continuum/fast-syntax-highlighting
 
 # Oh My Zsh plugins
 zinit ice wait lucid
 zinit snippet OMZP::sudo
+
+# Completion
+autoload -Uz compinit
+compinit
 
 # Environment
 path=(~/bin ~/.local/bin $path)
