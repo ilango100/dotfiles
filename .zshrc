@@ -78,9 +78,6 @@ PURE_GIT_PULL=0
 zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
 zinit light sindresorhus/pure
 
-# Plugins
-zinit light zsh-users/zsh-completions
-
 # FZF
 zinit ice from"gh-r" as"program" id-as"fzf-bin"
 zinit light junegunn/fzf
@@ -98,6 +95,7 @@ zinit ice wait lucid
 zinit snippet OMZP::sudo
 
 # Completion
+zinit light zsh-users/zsh-completions
 autoload -Uz compinit
 compinit
 
