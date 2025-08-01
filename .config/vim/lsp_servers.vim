@@ -79,6 +79,11 @@ export final lspServers = [
 		args: ["--slave", "-e", "languageserver::run()"],
 	},
 	{
+		filetype: ["mlir"],
+		path: "./build/bin/mlir-lsp-server",
+		args: []
+	},
+	{
 		filetype: ["pdll"],
 		path: "./build/bin/mlir-pdll-lsp-server",
 		args: []
