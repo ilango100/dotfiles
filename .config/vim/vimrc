@@ -61,7 +61,7 @@ set grepprg=rg\ --vimgrep
 
 # Statusline
 set laststatus=2
-set statusline=%<%f\ %([%H%W%M%R]%)
+set statusline=%<%f%(\ [%H%W%M%R]%)%=%-12.(\ %l:%c%V%)
 
 # Cmdline
 set showcmd
