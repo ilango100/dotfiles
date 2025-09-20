@@ -14,7 +14,7 @@ font pango:DejaVu Sans Mono 9
 floating_modifier $mod
 
 # Terminal - kitty
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec kitty -1
 
 # Launcher - fuzzel
 bindsym $mod+d exec fuzzel -T kitty
