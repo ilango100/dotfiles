@@ -88,11 +88,13 @@ set signcolumn=number
 # }}}
 # Buffer {{{
 
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set smarttab
-set noexpandtab
+# Tabs
+set tabstop=4       # Number of spaces to display <Tab>
+set shiftwidth=4    # Number of spaces inserted with i_CTRL-T, >> or <<
+set softtabstop=-1  # Number of spaces inserted with <Tab> & deleted with <BS> (same as sw)
+set noexpandtab     # Insert spaces when using <Tab> & indentation (also set per file type)
+set nosmarttab      # Insert sw for leading space & sts for non-leading space (not needed)
+
 set complete=.,w
 set undofile
 
@@ -176,7 +178,7 @@ g:oscyank_max_length = 128 * 1024  # 128 KB
 g:oscyank_silent = 1
 autocmd vimrc TextYankPost * {
 if v:event.operator == "y" && v:event.regname == ""
-    call OSCYankRegister(v:event.regname)
+	call OSCYankRegister(v:event.regname)
 endif
 }
 
