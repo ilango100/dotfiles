@@ -66,12 +66,13 @@ bindkey -M menuselect '^N' menu-complete
 bindkey -M menuselect '^P' reverse-menu-complete
 
 # Bootstrap zinit
-ZINIT_HOME=$HOME/.local/share/zinit/zinit
-if [ ! -d $ZINIT_HOME ]; then
-	mkdir -p "$(dirname $ZINIT_HOME)"
-	git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+declare -A ZINIT
+ZINIT[BIN_DIR]=$HOME/.local/share/zinit/zinit
+if [ ! -d ${ZINIT[BIN_DIR]} ]; then
+	mkdir -p "$(dirname ${ZINIT[BIN_DIR]})"
+	git clone https://github.com/zdharma-continuum/zinit.git "${ZINIT[BIN_DIR]}"
 fi
-source "${ZINIT_HOME}/zinit.zsh"
+source "${ZINIT[BIN_DIR]}/zinit.zsh"
 
 # Prompt theme - Pure
 PURE_GIT_PULL=0
