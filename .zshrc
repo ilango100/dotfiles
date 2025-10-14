@@ -105,6 +105,7 @@ path=(~/bin ~/.local/bin $path)
 export EDITOR=vim
 export VISUAL=$EDITOR
 export PAGER=less
+export MANPAGER="vim +MANPAGER --not-a-term -"
 export AUR_PAGER=$EDITOR
 
 # Aliases
