@@ -286,7 +286,6 @@ Plug "yegappan/lsp"
 # Other options are set by vimcomplete
 var lspOptions = {
 	autoComplete: false,
-	autoPopulateDiags: true,
 	completionTextEdit: false,
 	snippetSupport: true,
 	vsnipSupport: true,
