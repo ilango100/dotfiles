@@ -302,7 +302,7 @@ var lspOptions = {
 }
 
 def LSPInit()
-	setlocal complete=o,.^2
+	setlocal complete=o
 	setlocal autocomplete
 	setlocal tagfunc=lsp#lsp#TagFunc
 	nnoremap <buffer> g] <Cmd>LspPeekDefinition<CR>
