@@ -115,13 +115,22 @@ nnoremap <silent> <Leader>ll <Cmd>lwindow<CR>
 nnoremap <silent> <C-W>z <Cmd>wincmd z<bar>cclose<bar>lclose<CR>
 nnoremap <silent> <C-W>Q <Cmd>tabclose<CR>
 
-# <C-W> mappings
+# Navigation across windows
 nnoremap <C-S> <C-W>v
 nnoremap <C-Q> <C-W>q
 nnoremap <C-H> <C-W>h
 nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
 nnoremap <C-L> <C-W>l
+
+# Navigation across tabs
+# (Not used often, hence moving away from home row is fine)
+nnoremap <C-Up> <Cmd>tabnew<CR>
+nnoremap <C-Left> <Cmd>tabprevious<CR>
+nnoremap <C-Right> <Cmd>tabnext<CR>
+nnoremap <C-Down> <Cmd>tabclose<CR>
+
+# Navigation in Terminal
 tnoremap <C-J> <C-W>j
 tnoremap <C-K> <C-W>k
 tnoremap <C-E> <C-W>N
@@ -293,16 +302,12 @@ var lspOptions = {
 }
 
 def LSPInit()
+	setlocal complete=o,.^2
+	setlocal autocomplete
 	setlocal tagfunc=lsp#lsp#TagFunc
 	nnoremap <buffer> g] <Cmd>LspPeekDefinition<CR>
-	nnoremap <buffer> gd <Cmd>LspGotoDeclaration<CR>
-	nnoremap <buffer> gD <Cmd>LspPeekDeclaration<CR>
-	nnoremap <buffer> gy <Cmd>LspGotoTypeDef<CR>
-	nnoremap <buffer> gY <Cmd>LspPeekTypeDef<CR>
-	nnoremap <buffer> gl <Cmd>LspGotoImpl<CR>
-	nnoremap <buffer> gL <Cmd>LspPeekImpl<CR>
-	nnoremap <buffer> gb <Cmd>LspShowReferences<CR>
-	nnoremap <buffer> gB <Cmd>LspPeekReferences<CR>
+	nnoremap <buffer> <Leader>lt <Cmd>LspGotoTypeDef<CR>
+	nnoremap <buffer> <Leader>lp <Cmd>LspPeekReferences<CR>
 	nnoremap <buffer> K <Cmd>LspHover<CR>
 	inoremap <buffer> <C-Q> <Cmd>LspShowSignature<CR>
 	nnoremap <buffer> <Leader>lo <Cmd>LspOutline<CR>
@@ -312,7 +317,7 @@ def LSPInit()
 	nnoremap <buffer> <Leader>la <Cmd>LspCodeAction<CR>
 	nnoremap <buffer> <Leader>ld <Cmd>LspDiag show<CR>
 	nnoremap <buffer> <Leader>lf <Cmd>LspFold<bar>set foldcolumn=0<CR>
-	nnoremap <buffer> gqQ <Cmd>LspFormat<CR>
+	nnoremap <buffer> Q% <Cmd>LspFormat<CR>
 	setlocal formatexpr=lsp#lsp#FormatExpr()
 enddef
 
