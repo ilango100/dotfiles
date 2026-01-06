@@ -80,12 +80,12 @@ export final lspServers = [
 	},
 	{
 		filetype: ["mlir"],
-		path: "./build/bin/mlir-lsp-server",
+		path: "mlir-lsp-server",
 		args: []
 	},
 	{
 		filetype: ["pdll"],
-		path: "./build/bin/mlir-pdll-lsp-server",
+		path: "mlir-pdll-lsp-server",
 		args: []
 	},
 	{

@@ -155,8 +155,13 @@ augroup END
 # }}}
 # Plugins {{{
 
+# Builtin {{{
+
 packadd! matchit
 packadd! comment
+runtime ftplugin/man.vim
+
+# }}}
 
 # vim-plug bootstrapping
 if empty(glob(expand("$MYVIMDIR/autoload/plug.vim")))
