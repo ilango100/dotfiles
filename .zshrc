@@ -101,7 +101,7 @@ autoload -Uz compinit
 compinit
 
 # Environment
-path=(~/bin ~/.local/bin $path)
+path=(~/.local/bin $path)
 export EDITOR=vim
 export VISUAL=$EDITOR
 export PAGER=less
