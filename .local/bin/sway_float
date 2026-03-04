@@ -1,0 +1,13 @@
+#!/bin/sh
+
+height=$(swaymsg -t get_tree | grep -m1 '^    "height": [^0]' | grep -Eo '[0-9]+')
+halfheight=$(($height / 2))
+
+$@ &
+
+# Wait for window to be created
+sleep 0.1
+
+swaymsg "[pid=$!] floating enable"
+swaymsg "[pid=$!] move position center"
+swaymsg "[pid=$!] resize set width $halfheight height $halfheight"

@@ -173,7 +173,7 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 # Application shortcuts
 bindsym $mod+f exec firefox
 bindsym $mod+v exec pavucontrol
-bindsym $mod+m exec speedcrunch
+bindsym $mod+p exec ~/.local/bin/sway_float kitty python
 
 # Screenshot shortcuts
 bindsym $mod+Print exec grim $(date +$(xdg-user-dir PICTURES)/Screenshots/Screenshot_%Y-%m-%d_%H%M%S.png)
