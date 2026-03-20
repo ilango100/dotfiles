@@ -208,11 +208,12 @@ nnoremap <Leader>fb <Cmd>Buffers<CR>
 nnoremap <Leader>f/ :Rg <C-R><C-W>
 
 # }}}
-# Dirvish {{{
+# vim-dir {{{
 
-Plug "justinmk/vim-dirvish"
-g:dirvish_relative_paths = 1
-g:dirvish_mode = ':sort ,^\v(.*[\/])|\ze,'
+Plug "habamax/vim-dir"
+nnoremap - <Cmd>Dir<CR>
+g:dir_show_hidden = false
+g:dir_columns = "name"
 
 # }}}
 # Zepl {{{
