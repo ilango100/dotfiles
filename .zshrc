@@ -113,6 +113,9 @@ alias ls='ls --color=auto'
 alias la='ls -A'
 alias ll='la -lh'
 alias grep='grep --color=auto'
+alias vw='vim -c VimwikiIndex'
+alias vd='vim -c VimwikiDiaryIndex'
+alias vwd='vim -c "VimwikiDiaryIndex 2"'
 
 # Dot files management
 # git clone --separate-git-dir=$HOME/.dotfiles https://github.com/ilango100/dotfiles.git
