@@ -185,6 +185,24 @@ Plug "morhetz/gruvbox"
 g:gruvbox_italic = 1
 
 # }}}
+# vim-wiki {{{
+
+Plug "vimwiki/vimwiki"
+g:vimwiki_list = [{
+	"path": "~/iwiki",
+	"name": "iWiki",
+	"syntax": "markdown",
+	"ext": ".md",
+	"links_space_char": "_",
+}, {
+	"path": "~/work_wiki",
+	"name": "Work",
+	"syntax": "markdown",
+	"ext": ".md",
+	"links_space_char": "_",
+}]
+
+# }}}
 # Clipboard {{{
 
 Plug "ojroques/vim-oscyank"
