@@ -233,6 +233,10 @@ nnoremap - <Cmd>Dir<CR>
 g:dir_show_hidden = false
 g:dir_columns = "name"
 
+# Turn off netrw
+g:loaded_netrw = 1
+g:loaded_netrwPlugin = 1
+
 # }}}
 # Zepl {{{
 
