@@ -4,8 +4,8 @@ export final lspServers = [
 	# Scripting
 	{
 		filetype: ["python"],
-		path: "pylsp",
-		args: [],
+		path: "ty",
+		args: ["server"],
 	},
 	{
 		filetype: ["sh"],
