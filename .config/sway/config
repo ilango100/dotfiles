@@ -128,6 +128,9 @@ exec swayidle -w \
 	before-sleep 'playerctl pause' \
 	lock 'swaylock -fFei /usr/share/backgrounds/archlinux/lone.jpg'
 
+for_window [app_id=".*"] inhibit_idle fullscreen
+for_window [class=".*"] inhibit_idle fullscreen
+
 # Input configuration
 input type:touchpad {
 	tap enabled
@@ -180,7 +183,3 @@ bindsym $mod+p exec ~/.local/bin/sway_float kitty python
 bindsym $mod+Print exec grim $(date +$(xdg-user-dir PICTURES)/Screenshots/Screenshot_%Y-%m-%d_%H%M%S.png)
 bindsym $mod+Shift+Print exec grim -g "$(slurp)" $(date +$(xdg-user-dir PICTURES)/Screenshots/Screenshot_%Y-%m-%d_%H%M%S.png)
 bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy -t image/png
-
-# Always floating
-for_window [window_role="About"] floating enable
-for_window [title="SpeedCrunch"] floating enable
