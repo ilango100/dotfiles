@@ -20,7 +20,7 @@ export final lspServers = [
 
 	# Systems
 	{
-		filetype: ["c", "cpp", "objc", "objcpp"],
+		filetype: ["c", "cpp", "hip"],
 		path: "clangd",
 		args: ["--background-index"],
 	},
