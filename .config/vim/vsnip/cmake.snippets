@@ -1,0 +1,26 @@
+snippet cppi C++ Project initialization
+	cmake_minimum_required(VERSION ${1:4.0})
+
+	project(${2:project} LANGUAGES CXX)
+
+	set(CMAKE_CXX_STANDARD 20)
+	set(CMAKE_CXX_STANDARD_REQUIRED ON)
+	set(CMAKE_CXX_EXTENSIONS OFF)
+	set(CMAKE_CXX_SCAN_FOR_MODULES OFF)
+	set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+	if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+		add_compile_options(
+			-Wall
+			-Wextra
+			-Wpedantic
+			-Wconversion
+			-Wdeprecated
+		)
+	elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+		add_compile_options(
+			/Wall
+			/external:anglebrackets
+			/external:W0
+		)
+	endif()
