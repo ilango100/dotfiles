@@ -95,6 +95,10 @@ zinit light zdharma-continuum/fast-syntax-highlighting
 zinit ice wait lucid
 zinit snippet OMZP::sudo
 
+# ZMX
+zinit ice from"gh-r" as"program"
+zinit light neurosnap/zmx
+
 # Completion
 zinit light zsh-users/zsh-completions
 autoload -Uz compinit
