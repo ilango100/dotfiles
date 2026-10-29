@@ -90,9 +90,9 @@ set signcolumn=number
 
 # Tabs
 set tabstop=4       # Number of spaces to display <Tab>
-set shiftwidth=4    # Number of spaces inserted with i_CTRL-T, >> or <<
+set shiftwidth=2    # Number of spaces inserted with i_CTRL-T, >> or <<
 set softtabstop=-1  # Number of spaces inserted with <Tab> & deleted with <BS> (same as sw)
-set noexpandtab     # Insert spaces when using <Tab> & indentation (also set per file type)
+set expandtab       # Insert spaces when using <Tab> & indentation (also set per file type)
 set nosmarttab      # Insert sw for leading space & sts for non-leading space (not needed)
 
 set complete=.,w
@@ -252,6 +252,9 @@ autocmd vimrc User ZeplTerminalWinOpen set nonumber norelativenumber | wincmd J 
 
 # }}}
 # Filetype specific {{{
+
+# LLVM
+Plug "llvm/llvm.vim"
 
 # React
 Plug "maxmellon/vim-jsx-pretty"
